@@ -7,14 +7,31 @@ using Vector2i = ClipperLib.IntPoint;
 [RequireComponent(typeof(BulletPhysicComponent))]
 public class BulletBase : MonoBehaviour, IClip
 {
-    [SerializeField] private DestructibleTerrain terrain;
-    [SerializeField] private float diameter = 1.2f;
-    [SerializeField] private float radius = 1.2f;
-    [SerializeField] private int segmentCount = 10;
+    [SerializeField] private float radius;
+    [SerializeField] private int segmentCount;
     private Vector2 clipPosition;
+    private Vector3 clipPositionVec3;
     [SerializeField] private BulletPhysicComponent _physicComponent;
     public bool isActive { get; private set; }
     [SerializeField] private MeshRenderer _renderer;
+    private DestructibleTerrain terrain;
+
+
+    private void Start()
+    {
+        Vector2 positionWorldSpace = transform.position;
+        clipPosition = positionWorldSpace - terrain.GetPositionOffset();
+    }
+
+    private void Update()
+    {
+        if (!isActive) return;
+        clipPosition = (Vector2)this.transform.position - terrain.GetPositionOffset();
+        // clipPosition = this.transform.position;
+        // clipPositionVec3.Set(clipPosition.x, clipPosition.y, -4.5f);
+        // this.transform.position = clipPositionVec3;
+        // clipPosition = (Vector2)this.transform.position;
+    }
 
     public bool CheckBlockOverlapping(Vector2 p, float size)
     {
@@ -58,8 +75,36 @@ public class BulletBase : MonoBehaviour, IClip
     {
         //  TODO: push force to all objects around
 
+        //  TODO: Destruct map
+        terrain.ExecuteClip(this);
+
         //  Turn off bullet
         EnableBullet(false);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            Explode();
+        }
+    }
+
+    public void Init(DestructibleTerrain terrain)
+    {
+        this.terrain = terrain;
+    }
+
+    public void SetInfo(Vector2 startPos)
+    {
+        this.clipPosition = startPos - terrain.GetPositionOffset();
+        this.transform.position = startPos;
+    }
+
+    public void Fire(Vector2 direction, float force)
+    {
+        this._physicComponent.PushForce(direction, force);
+    }
+
 }
 

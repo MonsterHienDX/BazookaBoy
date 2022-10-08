@@ -83,6 +83,7 @@ public class DestructibleTerrain : MonoBehaviour
         childObject.name = "DestructableBlock";
         childObject.transform.SetParent(transform);
         childObject.transform.localPosition = Vector3.zero;
+        childObject.tag = "Ground";
 
         DestructibleBlock blockComp = childObject.AddComponent<DestructibleBlock>();
         blockComp.SetMaterial(material);
@@ -118,9 +119,7 @@ public class DestructibleTerrain : MonoBehaviour
     public void ExecuteClip(IClip clip)
     {
         BlockSimplification.epsilon = (int64)(simplifyEpsilonPercent / 100f * blockSize * VectorEx.float2int64);
-
         List<Vector2i> clipVertices = clip.GetVertices();
-
         ClipBounds bounds = clip.GetBounds();
         int x1 = Mathf.Max(0, (int)(bounds.lowerPoint.x / blockSize));
         if (x1 > resolutionX - 1) return;

@@ -6,6 +6,7 @@ public class BulletManager : MonoBehaviour
 {
     private List<BulletBase> bulletBaseList;
     [SerializeField] private BulletBase bulletPrefab;
+    [SerializeField] private DestructibleTerrain terrain;
 
     private void Awake()
     {
@@ -19,7 +20,9 @@ public class BulletManager : MonoBehaviour
             if (!bullet.isActive) return bullet;
         }
 
-        BulletBase bulletNew = Instantiate<BulletBase>(bulletPrefab);
-        return null;
+        BulletBase bulletNew = Instantiate<BulletBase>(bulletPrefab, this.transform);
+        bulletNew.Init(terrain);
+        bulletBaseList.Add(bulletNew);
+        return bulletNew;
     }
 }
