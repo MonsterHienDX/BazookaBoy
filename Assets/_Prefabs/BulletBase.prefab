@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b80e9d1c032cdf8469535963e68a36e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.5
+  radius: 1
   segmentCount: 10
   _physicComponent: {fileID: 4473345269029495256}
   _renderer: {fileID: 4473345268624665931}

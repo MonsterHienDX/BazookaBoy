@@ -11,7 +11,6 @@ public class PhysicComponentBase : MonoBehaviour
 
     public virtual void PushForce(Vector2 direction, float force)
     {
-        Debug.Log("Push force : " + direction.normalized * force);
         this._rb2D.AddForce(direction.normalized * force, ForceMode2D.Impulse);
     }
 

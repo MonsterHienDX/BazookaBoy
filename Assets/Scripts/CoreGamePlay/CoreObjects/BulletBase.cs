@@ -15,7 +15,7 @@ public class BulletBase : MonoBehaviour, IClip
     public bool isActive { get; private set; }
     [SerializeField] private MeshRenderer _renderer;
     private DestructibleTerrain terrain;
-
+    private IEnumerator explodeWithDelayCO;
 
     private void Start()
     {
@@ -27,10 +27,6 @@ public class BulletBase : MonoBehaviour, IClip
     {
         if (!isActive) return;
         clipPosition = (Vector2)this.transform.position - terrain.GetPositionOffset();
-        // clipPosition = this.transform.position;
-        // clipPositionVec3.Set(clipPosition.x, clipPosition.y, -4.5f);
-        // this.transform.position = clipPositionVec3;
-        // clipPosition = (Vector2)this.transform.position;
     }
 
     public bool CheckBlockOverlapping(Vector2 p, float size)
@@ -74,6 +70,7 @@ public class BulletBase : MonoBehaviour, IClip
     public void Explode()
     {
         //  TODO: push force to all objects around
+        ExplodeEffect();
 
         //  TODO: Destruct map
         terrain.ExecuteClip(this);
@@ -104,6 +101,29 @@ public class BulletBase : MonoBehaviour, IClip
     public void Fire(Vector2 direction, float force)
     {
         this._physicComponent.PushForce(direction, force);
+
+        if (explodeWithDelayCO != null) StopCoroutine(explodeWithDelayCO);
+        explodeWithDelayCO = ExplodeWithDelay(5f);
+        StartCoroutine(explodeWithDelayCO);
+    }
+
+    private IEnumerator ExplodeWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Explode();
+    }
+
+    private void ExplodeEffect()
+    {
+        Collider2D[] objectsGetEffect = Physics2D.OverlapCircleAll(this.clipPosition, radius);
+
+        if (objectsGetEffect != null)
+        {
+            for (int i = 0; i < objectsGetEffect.Length; i++)
+            {
+                Debug.Log($"objectsGetEffect [{i}] name: " + objectsGetEffect[i]);
+            }
+        }
     }
 
 }
