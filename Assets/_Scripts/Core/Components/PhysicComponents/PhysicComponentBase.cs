@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PhysicComponentBase : MonoBehaviour
 {
-
     [SerializeField] protected Collider2D _collider2D;
     [SerializeField] protected Rigidbody2D _rb2D;
-
 
     public virtual void PushForce(Vector2 direction, float force)
     {

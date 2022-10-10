@@ -42,9 +42,15 @@ public class BulletBaseD2D : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log($"{this.name} collide with {collision.gameObject.name}");
         if (collision.gameObject.tag.Equals("Ground"))
         {
-            Explode(collision.GetContact(0).point);
+            HandleCollideWithGround(collision);
+        }
+
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            HandleCollideWithEnemy(collision);
         }
     }
 
@@ -71,5 +77,18 @@ public class BulletBaseD2D : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Explode(this.transform.position);
+    }
+
+    private void HandleCollideWithEnemy(Collision2D collision)
+    {
+        Explode(collision.GetContact(0).point);
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        enemy.GetBulletAffect(this.transform.position, this.explosion.RaycastRadius, this.explosion.ForcePerRay);
+        enemy.Death();
+    }
+
+    private void HandleCollideWithGround(Collision2D collision)
+    {
+        Explode(collision.GetContact(0).point);
     }
 }

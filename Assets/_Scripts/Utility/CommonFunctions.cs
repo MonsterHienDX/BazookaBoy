@@ -61,18 +61,6 @@ public static class CommonFunctions
         return (int)Vector3.Angle(forwardObj1, forwardObj2) == 90;
     }
 
-    public static void ShowAnNoThanksTextAfter(Text textComponent, int delayMilliseconds)
-    {
-        if (!textComponent) return;
-        textComponent.DOFade(0, 0).Play();
-        textComponent.raycastTarget = false;
-        textComponent.DOFade(1, Const.PANEL_SLIDE_SPEED).SetDelay(delayMilliseconds / 1000f).OnComplete(() =>
-        {
-            textComponent.raycastTarget = true;
-        }).Play();
-    }
-    // private static System.Random random = new System.Random();
-
     public static float GetRandomPercentRate()
     {
         return RandomRange(0f, 100f);
@@ -86,5 +74,11 @@ public static class CommonFunctions
     public static float RandomRange(float min, float max)
     {
         return UnityEngine.Random.Range(min, max);
+    }
+
+    public static float CalculateForceRateByDistanceToCenter(Vector2 center, Vector2 objectPos, float radius)
+    {
+        float distance = Vector2.Distance(center, objectPos);
+        return distance / radius;
     }
 }

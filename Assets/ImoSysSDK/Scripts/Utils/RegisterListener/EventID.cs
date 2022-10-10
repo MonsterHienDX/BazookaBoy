@@ -6,5 +6,6 @@ public enum EventID
     Pause,
     ShowToast,
     NextLevel,
-    ShowPopup
+    ShowPopup,
+    EnemyDie
 }

@@ -6,11 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(HumanPhysicComponent))]
 [RequireComponent(typeof(AnimationComponent))]
 
-public class Player : MonoBehaviour
+public class Player : Human
 {
     [SerializeField] private AimSystem _aimSystem;
-    [SerializeField] private HumanPhysicComponent _physicComponent;
-    [SerializeField] private AnimationComponent _animationComponent;
     [SerializeField] private Transform gunBarrelTransform;
     [SerializeField] private Transform gunMuzzleTransform;
     [SerializeField] private BulletManager _bulletManager;
@@ -46,10 +44,5 @@ public class Player : MonoBehaviour
     private void Aim(Vector2 mousePos)
     {
         gunBarrelTransform.rotation = _aimSystem.GetAimDirection(mousePos);
-    }
-
-    private void OnCollide()
-    {
-
     }
 }
