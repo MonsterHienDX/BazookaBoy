@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-    private List<BulletBase> bulletBaseList;
-    [SerializeField] private BulletBase bulletPrefab;
-    [SerializeField] private DestructibleTerrain terrain;
+    private List<BulletBaseD2D> bulletBaseList;
+    [SerializeField] private BulletBaseD2D bulletPrefab;
 
     private void Awake()
     {
-        bulletBaseList = new List<BulletBase>();
+        bulletBaseList = new List<BulletBaseD2D>();
     }
 
-    public BulletBase GetBullet()
+    public BulletBaseD2D GetBullet()
     {
-        foreach (BulletBase bullet in bulletBaseList)
+        foreach (BulletBaseD2D bullet in bulletBaseList)
         {
             if (!bullet.isActive) return bullet;
         }
 
-        BulletBase bulletNew = Instantiate<BulletBase>(bulletPrefab, this.transform);
-        bulletNew.Init(terrain);
+        BulletBaseD2D bulletNew = Instantiate<BulletBaseD2D>(bulletPrefab, this.transform);
+        bulletNew.Init();
         bulletBaseList.Add(bulletNew);
         return bulletNew;
     }

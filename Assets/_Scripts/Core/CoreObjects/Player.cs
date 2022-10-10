@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         //  TODO: Get bullet
-        BulletBase bullet = _bulletManager.GetBullet();
+        BulletBaseD2D bullet = _bulletManager.GetBullet();
         bullet.EnableBullet(true);
         bullet.SetInfo(this.gunMuzzleTransform.position);
 
