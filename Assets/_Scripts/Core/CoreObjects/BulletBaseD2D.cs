@@ -5,52 +5,58 @@ using Destructible2D.Examples;
 using UnityEngine;
 
 [RequireComponent(typeof(BulletPhysicComponent))]
+[RequireComponent(typeof(BulletFXComponent))]
 public class BulletBaseD2D : MonoBehaviour
 {
     [SerializeField] private BulletPhysicComponent _physicComponent;
+    [SerializeField] private BulletFXComponent _fxComponent;
     public bool isActive { get; private set; }
     [SerializeField] private MeshRenderer _renderer;
     private IEnumerator explodeWithDelayCO;
     [SerializeField] private D2dExplosion explosion;
     private Vector3 posVec3;
+    private bool hasExploded;
+
+    private void OnValidate()
+    {
+        _fxComponent.UpdateFXSize(explosion.StampSize);
+    }
 
     public void EnableBullet(bool enable)
     {
         this._physicComponent.EnablePhysic(enable);
         isActive = enable;
         _renderer.enabled = enable;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-            D2dStamp.All(D2dDestructible.PaintType.Cut, this.transform.position, Vector2.one * 2, 90f, Texture2D.blackTexture, Color.blue);
+        hasExploded = !enable;
+        _fxComponent.KillFX();
     }
 
     public void Explode(Vector2 position)
     {
         //  TODO: push force to all objects around
 
-        //  TODO: Destruct map
-        // D2dExplosion explosion = Instantiate<D2dExplosion>(explosionPrefab, this.transform.position, Quaternion.identity, this.transform);
-        explosion.Explode(position);
 
+        //  TODO: Destruct map
+        explosion.Explode(position);
+        hasExploded = true;
 
         //  Turn off bullet
         EnableBullet(false);
+
+        //  TODO: Play FX Explode
+        _fxComponent.PlayExplodeFX();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"{this.name} collide with {collision.gameObject.name}");
-        if (collision.gameObject.tag.Equals("Ground"))
+        if (collision.gameObject.tag.Equals("DestructibleObjects"))
         {
             HandleCollideWithGround(collision);
         }
 
-        if (collision.gameObject.tag.Equals("Enemy"))
+        if (collision.gameObject.tag.Equals("Human"))
         {
-            HandleCollideWithEnemy(collision);
+            HandleCollideWithHuman(collision);
         }
     }
 
@@ -76,14 +82,14 @@ public class BulletBaseD2D : MonoBehaviour
     private IEnumerator ExplodeWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Explode(this.transform.position);
+        if (!hasExploded) Explode(this.transform.position);
     }
 
-    private void HandleCollideWithEnemy(Collision2D collision)
+    private void HandleCollideWithHuman(Collision2D collision)
     {
         Explode(collision.GetContact(0).point);
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        enemy.GetBulletAffect(this.transform.position, this.explosion.RaycastRadius, this.explosion.ForcePerRay);
+        Human enemy = collision.gameObject.GetComponent<Human>();
+        enemy.GetBulletAffect(this.transform.position, this.explosion.StampSize.x, this.explosion.ForcePerRay);
         enemy.Death();
     }
 

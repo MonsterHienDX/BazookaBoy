@@ -7,15 +7,10 @@ public class Enemy : Human
 {
     [SerializeField] private MeshRenderer _meshRenderer;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T)) Death();
-    }
-
     public override void Death()
     {
-        base.Death();
         EventDispatcher.Instance.PostEvent(EventID.EnemyDie, this);
+        base.Death();
     }
 
     public void ChangeDieMaterial(Material material) => this._meshRenderer.material = material;

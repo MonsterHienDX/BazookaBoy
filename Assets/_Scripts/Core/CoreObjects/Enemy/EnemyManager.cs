@@ -40,10 +40,9 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleEventEnemyDie(object param)
     {
-        Debug.Log("HandleEventEnemyDie");
         Enemy enemy = (Enemy)param;
-        if (!enemy) return;
+        if (!enemy || enemy.isDie) return;
+        Debug.Log("HandleEventEnemyDie");
         enemy.ChangeDieMaterial(dieMaterial);
     }
-
 }

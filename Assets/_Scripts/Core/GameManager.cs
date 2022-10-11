@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
     public bool isPlaying { get; private set; }
     public static Camera mainCamera { get; private set; }
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     private void Start()
     {
         mainCamera = Camera.main;

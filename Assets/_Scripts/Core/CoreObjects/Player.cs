@@ -13,8 +13,9 @@ public class Player : Human
     [SerializeField] private Transform gunMuzzleTransform;
     [SerializeField] private BulletManager _bulletManager;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _aimSystem.Init(this.transform);
     }
 
@@ -44,5 +45,10 @@ public class Player : Human
     private void Aim(Vector2 mousePos)
     {
         gunBarrelTransform.rotation = _aimSystem.GetAimDirection(mousePos);
+    }
+
+    public override void Death()
+    {
+        base.Death();
     }
 }
