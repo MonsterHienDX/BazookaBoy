@@ -64,10 +64,11 @@ public class BulletBaseD2D : MonoBehaviour
     {
     }
 
-    public void SetInfo(Vector2 startPos)
+    public void SetInfo(Vector2 startPos, Vector3 startRot)
     {
         posVec3.Set(startPos.x, startPos.y, 0);
         this.transform.position = posVec3;
+        this.transform.localEulerAngles = startRot;
     }
 
     public void Fire(Vector2 direction, float force)

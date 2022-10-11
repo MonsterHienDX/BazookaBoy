@@ -30,11 +30,10 @@ public class Player : Human
         //  TODO: Get bullet
         BulletBaseD2D bullet = _bulletManager.GetBullet();
         bullet.EnableBullet(true);
-        bullet.SetInfo(this.gunMuzzleTransform.position);
+        bullet.SetInfo(this.gunMuzzleTransform.position, this.gunBarrelTransform.localEulerAngles);
 
         //  TODO: Calculate direction and add force
         Vector2 direction = (Vector2)this.gunMuzzleTransform.position - (Vector2)this.transform.position;
-
         bullet.Fire(direction, 10f);
 
         //  TODO: FX shoot
