@@ -49,7 +49,7 @@ namespace Destructible2D.Examples
 
         protected virtual void Start()
         {
-            Explode(this.transform.position);
+            // Explode(this.transform.position);
         }
 
         public virtual void Explode(Vector2 position)

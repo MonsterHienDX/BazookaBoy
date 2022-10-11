@@ -3,19 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
     public bool isPlaying { get; private set; }
     public static Camera mainCamera { get; private set; }
     [SerializeField] private EndLevelPanel _endLevelPanel;
-
+    [SerializeField] private Button reloadSceneButton;
 
     protected override void Awake()
     {
         base.Awake();
         Application.targetFrameRate = 60;
         mainCamera = Camera.main;
+    }
+
+    private void OnEnable()
+    {
+        reloadSceneButton.onClick.AddListener(ReLoadScene);
+    }
+
+    private void OnDisable()
+    {
+        reloadSceneButton.onClick.RemoveListener(ReLoadScene);
     }
 
     private void Start()
@@ -65,6 +77,11 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
         this.isPlaying = false;
 
+    }
+
+    private void ReLoadScene()
+    {
+        SceneManager.LoadScene("DemoDestructible2D");
     }
 
     private void ResetDataLevel()
