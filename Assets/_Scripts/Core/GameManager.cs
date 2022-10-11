@@ -1,21 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMonobehaviour<GameManager>
 {
     public bool isPlaying { get; private set; }
     public static Camera mainCamera { get; private set; }
+    [SerializeField] private EndLevelPanel _endLevelPanel;
 
-    private void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         Application.targetFrameRate = 60;
+        mainCamera = Camera.main;
     }
 
     private void Start()
     {
-        mainCamera = Camera.main;
+        LoadLevel();
     }
 
     public void LoadLevel()
@@ -25,22 +30,31 @@ public class GameManager : MonoBehaviour
         ResetDataLevel();
 
         //  TODO: Load new level
+
+        this.isPlaying = true;
     }
 
-    public void WinLevel()
+    public async UniTask WinLevel()
     {
         EndLevel();
 
         //  TODO: Summary resources
 
         //  TODO: Show popup win
+        _endLevelPanel.ShowPopupEndLevel(true);
+
+        await UniTask.WaitUntil(() => !_endLevelPanel.isShowing);
 
         LoadLevel();
     }
 
-    public void LoseLevel()
+    public async UniTask LoseLevel()
     {
         EndLevel();
+
+        _endLevelPanel.ShowPopupEndLevel(false);
+
+        await UniTask.WaitUntil(() => !_endLevelPanel.isShowing);
 
         LoadLevel();
     }
@@ -48,6 +62,8 @@ public class GameManager : MonoBehaviour
     private void EndLevel()
     {
         //  TODO: Stop checking physic
+
+        this.isPlaying = false;
 
     }
 

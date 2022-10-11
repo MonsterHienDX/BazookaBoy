@@ -6,6 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     [field: SerializeField] public Material dieMaterial { get; private set; }
     private List<Enemy> enemyList;
+    private int enemyAmount;
 
     private void OnEnable()
     {
@@ -44,5 +45,7 @@ public class EnemyManager : MonoBehaviour
         if (!enemy || enemy.isDie) return;
         Debug.Log("HandleEventEnemyDie");
         enemy.ChangeDieMaterial(dieMaterial);
+        enemyAmount--;
+        if (enemyAmount <= 0) _ = GameManager.instance.WinLevel();
     }
 }

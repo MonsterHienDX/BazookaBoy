@@ -21,6 +21,7 @@ public class Player : Human
 
     private void Update()
     {
+        if (!GameManager.instance.isPlaying) return;
         if (Input.GetMouseButton(0)) Aim(Input.mousePosition);
         if (Input.GetMouseButtonUp(0)) Shoot();
     }
@@ -49,5 +50,6 @@ public class Player : Human
     public override void Death()
     {
         base.Death();
+        _ = GameManager.instance.LoseLevel();
     }
 }
