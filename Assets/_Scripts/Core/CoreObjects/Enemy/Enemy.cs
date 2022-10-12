@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : Human
 {
     [SerializeField] private MeshRenderer _meshRenderer;
+    public EnemyType type { get; protected set; }
 
     public override void Death()
     {
@@ -14,5 +15,10 @@ public class Enemy : Human
     }
 
     public void ChangeDieMaterial(Material material) => this._meshRenderer.material = material;
+
+    public void Init(EnemyType type)
+    {
+        this.type = type;
+    }
 
 }

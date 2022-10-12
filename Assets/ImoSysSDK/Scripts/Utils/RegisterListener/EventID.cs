@@ -7,5 +7,6 @@ public enum EventID
     ShowToast,
     NextLevel,
     ShowPopup,
-    EnemyDie
+    EnemyDie,
+    ResetDataLevel
 }

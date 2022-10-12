@@ -30,8 +30,8 @@ public class Player : Human
     {
         //  TODO: Get bullet
         BulletBaseD2D bullet = _bulletManager.GetBullet();
-        bullet.EnableBullet(true);
         bullet.SetInfo(this.gunMuzzleTransform.position, this.gunBarrelTransform.localEulerAngles);
+        bullet.EnableBullet(true);
 
         //  TODO: Calculate direction and add force
         Vector2 direction = (Vector2)this.gunMuzzleTransform.position - (Vector2)this.transform.position;

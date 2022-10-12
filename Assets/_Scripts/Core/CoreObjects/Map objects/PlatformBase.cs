@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using Destructible2D;
 using UnityEngine;
 
-[RequireComponent(typeof(D2dDestructibleSprite))]
 public class PlatformBase : MonoBehaviour
 {
-    protected D2dDestructibleSprite _destructibleSprite;
     [SerializeField] protected Vector2 size = Vector2.one;
     [SerializeField] protected SpriteRenderer _spriteRenderer;
-    protected Vector3 sizeVec3;
+    protected Vector3 cachedSizeVec3;
+    public bool isActive { get; protected set; }
 
-    protected virtual void Awake()
+
+    private void OnEnable()
     {
-        this._destructibleSprite = this.GetComponent<D2dDestructibleSprite>();
+        // EventDispatcher.Instance.RegisterListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+    }
+
+    private void OnDisable()
+    {
+        // EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+    }
+
+    protected virtual void HandleEventResetDataLevel(object param = null)
+    {
+        this.Enable(false);
     }
 
     protected virtual void OnValidate()
@@ -23,9 +33,17 @@ public class PlatformBase : MonoBehaviour
 
     public virtual void SetSize(Vector2 size)
     {
-        sizeVec3.Set(size.x, size.y, 1);
-        this.transform.localScale = sizeVec3;
+        cachedSizeVec3.Set(size.x, size.y, 1);
+        this.transform.localScale = cachedSizeVec3;
     }
 
-    public virtual void SetTileSprite(Sprite sprite) => this._spriteRenderer.sprite = sprite;
+    public virtual void Enable(bool enable)
+    {
+        this.isActive = enable;
+        this.gameObject.SetActive(enable);
+    }
+
+    public virtual void SetSprite(Sprite sprite) => this._spriteRenderer.sprite = sprite;
+
+    public virtual void SetPosition(Vector3 pos) => this.transform.position = pos;
 }

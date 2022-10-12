@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [field: SerializeField] public Material dieMaterial { get; private set; }
+    [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private Transform enemyContainer;
     private List<Enemy> enemyList;
     private int enemyAmount;
 
@@ -37,6 +39,23 @@ public class EnemyManager : MonoBehaviour
     public void Reset()
     {
 
+    }
+
+    public void SpawnEnemies(EnemyInfo[] enemyInfos)
+    {
+        for (int i = 0; i < enemyInfos.Length; i++)
+        {
+            SpawnEnemy(enemyInfos[i]);
+        }
+    }
+
+    private void SpawnEnemy(EnemyInfo enemyInfo)
+    {
+        Enemy enemy = Instantiate<Enemy>(enemyPrefab, enemyContainer);
+        enemy.Enable(true);
+        enemy.SetPosition(enemyInfo.pos);
+        enemy.Init(enemyInfo.type);
+        this.enemyList.Add(enemy);
     }
 
     private void HandleEventEnemyDie(object param)

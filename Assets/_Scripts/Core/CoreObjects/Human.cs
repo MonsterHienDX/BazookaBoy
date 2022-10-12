@@ -10,17 +10,13 @@ public class Human : MonoBehaviour
     [SerializeField] protected AnimationComponent _animationComponent;
     [SerializeField] protected float forceCanSuffer;
     [SerializeField] protected ParticleSystem _fx_blood;
+    public bool isActive { get; private set; }
 
     public bool isDie { get; protected set; }
 
     protected virtual void Start()
     {
         ResetState();
-    }
-
-    public virtual void Init()
-    {
-
     }
 
     public virtual void Death()
@@ -66,4 +62,11 @@ public class Human : MonoBehaviour
         if (enable) _fx_blood.Play();
         else _fx_blood.Stop();
     }
+
+    public virtual void Enable(bool enable)
+    {
+        this.isActive = enable;
+    }
+
+    public virtual void SetPosition(Vector3 pos) => this.transform.position = pos;
 }
