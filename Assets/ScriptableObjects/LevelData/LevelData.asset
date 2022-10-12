@@ -25,7 +25,7 @@ MonoBehaviour:
       size: {x: 0.5, y: 3}
     - centerPos: {x: 2.47, y: 1.75}
       size: {x: 3, y: 0.5}
-    - centerPos: {x: 3.47, y: 4.75}
+    - centerPos: {x: 3.47, y: 3.25}
       size: {x: 0.5, y: 3}
     enemies:
     - type: 0
