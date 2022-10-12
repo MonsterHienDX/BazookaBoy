@@ -16,7 +16,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = Const.FPS;
         mainCamera = Camera.main;
     }
 

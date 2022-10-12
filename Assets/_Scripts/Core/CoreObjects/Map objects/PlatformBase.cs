@@ -6,9 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(D2dDestructibleSprite))]
 public class PlatformBase : MonoBehaviour
 {
-    [SerializeField] protected D2dDestructibleSprite _destructibleSprite;
+    protected D2dDestructibleSprite _destructibleSprite;
     [SerializeField] protected Vector2 size = Vector2.one;
+    [SerializeField] protected SpriteRenderer _spriteRenderer;
     protected Vector3 sizeVec3;
+
+    protected virtual void Awake()
+    {
+        this._destructibleSprite = this.GetComponent<D2dDestructibleSprite>();
+    }
 
     protected virtual void OnValidate()
     {
@@ -20,4 +26,6 @@ public class PlatformBase : MonoBehaviour
         sizeVec3.Set(size.x, size.y, 1);
         this.transform.localScale = sizeVec3;
     }
+
+    public virtual void SetTileSprite(Sprite sprite) => this._spriteRenderer.sprite = sprite;
 }

@@ -49,7 +49,9 @@ public class BulletBaseD2D : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("DestructibleObjects"))
+        if (collision.gameObject.tag.Equals("DestructibleObjects")
+            || collision.transform.parent.gameObject.tag.Equals("DestructibleObjects")
+        )
         {
             HandleCollideWithGround(collision);
         }
