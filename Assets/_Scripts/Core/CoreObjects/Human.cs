@@ -11,18 +11,26 @@ public class Human : MonoBehaviour
     [SerializeField] protected float forceCanSuffer;
     [SerializeField] protected ParticleSystem _fx_blood;
     public bool isActive { get; private set; }
-
     public bool isDie { get; protected set; }
+    protected Vector3 _startPos;
+    protected Vector3 _startRot;
 
     protected virtual void Start()
     {
         ResetState();
     }
 
+    protected virtual void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T)) Reset();
+    }
+
     public virtual void Death()
     {
         this.isDie = true;
         EnableFXBlood(true);
+
+        //  TODO: turn on rag doll
     }
 
     public virtual void ChangeAnimState()
@@ -53,7 +61,7 @@ public class Human : MonoBehaviour
 
     private bool CanSufferForce(Vector2 force)
     {
-        Debug.Log($"{this.name} suffer force: " + force);
+        // Debug.Log($"{this.name} suffer force: " + force);
         return (Mathf.Abs(force.x) < forceCanSuffer && Mathf.Abs(force.y) < forceCanSuffer);
     }
 
@@ -68,5 +76,22 @@ public class Human : MonoBehaviour
         this.isActive = enable;
     }
 
-    public virtual void SetPosition(Vector3 pos) => this.transform.position = pos;
+    public virtual void Reset()
+    {
+        //  TODO: Turn off blood FX
+        EnableFXBlood(false);
+
+        //  TODO: Turn off rag doll
+
+        //  TODO: Reset transform
+        this.transform.localPosition = _startPos;
+        this.transform.localEulerAngles = _startRot;
+    }
+
+    public virtual void InitTransform(Vector3 pos)
+    {
+        this.transform.localPosition = pos;
+        this._startPos = pos;
+        this._startRot = this.transform.localEulerAngles;
+    }
 }

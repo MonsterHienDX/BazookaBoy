@@ -53,7 +53,7 @@ public class EnemyManager : MonoBehaviour
     {
         Enemy enemy = Instantiate<Enemy>(enemyPrefab, enemyContainer);
         enemy.Enable(true);
-        enemy.SetPosition(enemyInfo.pos);
+        enemy.InitTransform(enemyInfo.pos);
         enemy.Init(enemyInfo.type);
         this.enemyList.Add(enemy);
     }

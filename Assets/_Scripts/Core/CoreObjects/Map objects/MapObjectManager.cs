@@ -41,12 +41,9 @@ public class MapObjectManager : MonoBehaviour
 
     private void SpawnWood(MapObjectInfo woodInfo)
     {
-        Debug.Log("SpawnWood at: " + woodInfo.centerPos);
-        Vector3 cachedPos = Vector3.zero;
-        Wood stone = GetWood(cachedPos);
-
-        stone.SetSize(woodInfo.size);
-        stone.SetPosition(woodInfo.centerPos);
+        Wood wood = GetWood(woodInfo.centerPos);
+        wood.SetSize(woodInfo.size);
+        wood.SetPosition(woodInfo.centerPos);
     }
 
     public void SpawnWoods(MapObjectInfo[] woodInfos)
@@ -59,13 +56,9 @@ public class MapObjectManager : MonoBehaviour
 
     private void SpawnStone(MapObjectInfo stoneInfo)
     {
-        Vector3 cachedPos = Vector3.zero;
-        Stone stone = GetStone(cachedPos);
-
+        Stone stone = GetStone(stoneInfo.centerPos);
         stone.SetSize(stoneInfo.size);
         stone.SetPosition(stoneInfo.centerPos);
-
-        // cachedPos.Set((x - stoneInfo.size.x / 2) * 1.28f, y * 1.28f, 0);
     }
 
     public void SpawnStones(MapObjectInfo[] stoneInfos)
@@ -91,10 +84,9 @@ public class MapObjectManager : MonoBehaviour
         // }
 
         Ground groundNew = Instantiate<Ground>(groundPrefab, this.groundContainer);
-        groundNew.name = "Ground";
-        groundNew.tag = "DestructibleObjects";
-        groundNew.transform.localPosition = pos;
+        groundNew.Init(pos);
         groundNew.SetSprite(sprite);
+
         groundList.Add(groundNew);
 
         return groundNew;
@@ -102,21 +94,8 @@ public class MapObjectManager : MonoBehaviour
 
     private Wood GetWood(Vector3 pos)
     {
-        // foreach (Wood wood in woodList)
-        // {
-        //     if (!wood.isActive)
-        //     {
-        //         wood.Enable(true);
-        //         wood.Reset();
-        //         return wood;
-        //     }
-        // }
-
         Wood woodNew = Instantiate<Wood>(woodPrefab, this.woodContainer);
-        woodNew.name = "Wood";
-        woodNew.tag = "DestructibleObjects";
-        woodNew.transform.localPosition = pos;
-        // woodNew.OptimizeWhenInit();
+        woodNew.Init(pos);
         woodList.Add(woodNew);
 
         return woodNew;
@@ -134,9 +113,7 @@ public class MapObjectManager : MonoBehaviour
         // }
 
         Stone stoneNew = Instantiate<Stone>(stonePrefab, this.stoneContainer);
-        stoneNew.name = "Stone";
-        stoneNew.tag = "DestructibleObjects";
-        stoneNew.transform.localPosition = pos;
+        stoneNew.Init(pos);
         stoneList.Add(stoneNew);
 
         return stoneNew;

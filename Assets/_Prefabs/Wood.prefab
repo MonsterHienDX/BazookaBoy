@@ -34482,6 +34482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 3, y: 0.5}
   _spriteRenderer: {fileID: 5810017559973330977}
+  _rb2D: {fileID: 5810017559973330991}
   _splitter: {fileID: 5810017559973330988}
   _woodSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
 --- !u!114 &5810017559973330990

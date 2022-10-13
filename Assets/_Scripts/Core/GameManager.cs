@@ -52,7 +52,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         _mapObjectManager.SpawnStones(levelInfo.stones);
         _mapObjectManager.SpawnWoods(levelInfo.woods);
         _enemyManager.SpawnEnemies(levelInfo.enemies);
-        _player.SetPosition(levelInfo.playerPos);
+        _player.InitTransform(levelInfo.playerPos);
 
         this.isPlaying = true;
     }

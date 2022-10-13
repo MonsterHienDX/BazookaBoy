@@ -8,7 +8,10 @@ public class PlatformBase : MonoBehaviour
     [SerializeField] protected Vector2 size = Vector2.one;
     [SerializeField] protected SpriteRenderer _spriteRenderer;
     protected Vector3 cachedSizeVec3;
+    [SerializeField] protected Rigidbody2D _rb2D;
     public bool isActive { get; protected set; }
+    protected Vector3 _startPos;
+    protected Vector3 _startRot;
 
 
     private void OnEnable()
@@ -46,4 +49,18 @@ public class PlatformBase : MonoBehaviour
     public virtual void SetSprite(Sprite sprite) => this._spriteRenderer.sprite = sprite;
 
     public virtual void SetPosition(Vector3 pos) => this.transform.position = pos;
+
+    public virtual void Init(Vector3 pos)
+    {
+        this.tag = "DestructibleObjects";
+        this.transform.localPosition = pos;
+        this._startPos = pos;
+        this._startRot = this.transform.localEulerAngles;
+    }
+
+    public virtual void Reset()
+    {
+        this.transform.localPosition = _startPos;
+        this.transform.localEulerAngles = _startRot;
+    }
 }
