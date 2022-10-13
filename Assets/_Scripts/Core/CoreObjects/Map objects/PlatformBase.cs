@@ -12,7 +12,7 @@ public class PlatformBase : MonoBehaviour
     public bool isActive { get; protected set; }
     protected Vector3 _startPos;
     protected Vector3 _startRot;
-
+    protected int _instanceIDInit;
 
     private void OnEnable()
     {
@@ -40,6 +40,8 @@ public class PlatformBase : MonoBehaviour
         this.transform.localScale = cachedSizeVec3;
     }
 
+    public Vector2 GetSize() => size;
+
     public virtual void Enable(bool enable)
     {
         this.isActive = enable;
@@ -52,15 +54,18 @@ public class PlatformBase : MonoBehaviour
 
     public virtual void Init(Vector3 pos)
     {
+        Debug.Log("Init platform: " + this.name);
         this.tag = "DestructibleObjects";
         this.transform.localPosition = pos;
         this._startPos = pos;
         this._startRot = this.transform.localEulerAngles;
+        this._instanceIDInit = GetInstanceID();
     }
 
     public virtual void Reset()
     {
         this.transform.localPosition = _startPos;
         this.transform.localEulerAngles = _startRot;
+        if (this.GetInstanceID() != _instanceIDInit) Destroy(this.gameObject);
     }
 }

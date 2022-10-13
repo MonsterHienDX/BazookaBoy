@@ -12,6 +12,7 @@ public class Player : Human
     [SerializeField] private Transform gunBarrelTransform;
     [SerializeField] private Transform gunMuzzleTransform;
     [SerializeField] private BulletManager _bulletManager;
+    [SerializeField] private float fireForce;
 
     protected override void Start()
     {
@@ -36,7 +37,7 @@ public class Player : Human
 
         //  TODO: Calculate direction and add force
         Vector2 direction = (Vector2)this.gunMuzzleTransform.position - (Vector2)this.transform.position;
-        bullet.Fire(direction, 10f);
+        bullet.Fire(direction, fireForce);
 
         //  TODO: FX shoot
 

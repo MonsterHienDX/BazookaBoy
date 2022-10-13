@@ -83,6 +83,9 @@ public class Human : MonoBehaviour
 
         //  TODO: Turn off rag doll
 
+        //  TODO: Reset physic
+        this._physicComponent.ResetVelocity();
+
         //  TODO: Reset transform
         this.transform.localPosition = _startPos;
         this.transform.localEulerAngles = _startRot;

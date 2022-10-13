@@ -79,9 +79,6 @@ public static class CommonFunctions
     public static float CalculateForceRateByDistanceToCenter(Vector2 center, Vector2 objectPos, float radius)
     {
         float distance = Vector2.Distance(center, objectPos);
-        Debug.Log("___CalculateForceRateByDistanceToCenter");
-        Debug.Log("distance: " + distance);
-        Debug.Log("radius: " + radius);
         return distance / radius;
     }
 }

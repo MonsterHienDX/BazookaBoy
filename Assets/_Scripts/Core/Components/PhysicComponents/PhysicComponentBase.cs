@@ -17,4 +17,9 @@ public class PhysicComponentBase : MonoBehaviour
         _collider2D.enabled = enable;
         _rb2D.bodyType = (enable) ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
     }
+
+    public void ResetVelocity()
+    {
+        this._rb2D.velocity = Vector2.zero;
+    }
 }

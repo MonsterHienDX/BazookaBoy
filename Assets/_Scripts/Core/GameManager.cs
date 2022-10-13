@@ -16,12 +16,15 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     [SerializeField] private MapObjectManager _mapObjectManager;
     [SerializeField] private EnemyManager _enemyManager;
     [SerializeField] private Player _player;
+    [SerializeField] private int indexLevelNumberToLoad;
+    public int levelAmount { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
         Application.targetFrameRate = Const.FPS;
         mainCamera = Camera.main;
+        levelAmount = dataLevel.levelInfos.Count;
     }
 
     private void OnEnable()
@@ -46,7 +49,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         ResetDataLevel();
 
         //  TODO: Load new level
-        LevelInfo levelInfo = dataLevel.levelInfos[0];
+        LevelInfo levelInfo = dataLevel.levelInfos[indexLevelNumberToLoad];
 
         _mapObjectManager.SpawnGround(levelInfo.groundInfo);
         _mapObjectManager.SpawnStones(levelInfo.stones);
@@ -55,6 +58,16 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         _player.InitTransform(levelInfo.playerPos);
 
         this.isPlaying = true;
+    }
+
+    public void LoadLevelByLevelIndex(int indexLevel)
+    {
+        UserData.LevelNumberTest = indexLevel;
+
+        ReLoadScene();
+        this.indexLevelNumberToLoad = UserData.LevelNumberTest;
+
+        LoadLevel();
     }
 
     public async UniTask WinLevel()

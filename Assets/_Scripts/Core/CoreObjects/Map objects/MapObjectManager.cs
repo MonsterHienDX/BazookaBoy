@@ -16,6 +16,7 @@ public class MapObjectManager : MonoBehaviour
     [SerializeField] private Transform woodContainer;
     [SerializeField] private Transform stoneContainer;
 
+
     private void Awake()
     {
         groundList = new List<Ground>();
