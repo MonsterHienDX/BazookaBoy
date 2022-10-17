@@ -29,9 +29,9 @@ public class Player : Human
         base.Start();
     }
 
-    protected void Update()
+    protected override void Update()
     {
-        if (!GameManager.instance.isPlaying) return;
+        base.Update();
         if (Input.GetMouseButton(0)) Aim(Input.mousePosition);
         if (Input.GetMouseButtonUp(0)) Shoot();
     }

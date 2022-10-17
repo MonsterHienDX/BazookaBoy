@@ -14,6 +14,7 @@ public class Human : MonoBehaviour
     public bool isDie { get; protected set; }
     protected Vector3 _startPos;
     protected Vector3 _startRot;
+    private HumanState _humanState => _animationComponent.humanState;
 
     private void OnEnable()
     {
@@ -35,13 +36,13 @@ public class Human : MonoBehaviour
         Reset();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
+        if (!GameManager.instance.isPlaying) return;
         if (this._physicComponent._rb2D.velocity != Vector2.zero)
         {
             Debug.Log("_physicComponent._rb2D.velocity: " + _physicComponent._rb2D.velocity);
             CheckDeathByForce(_physicComponent._rb2D.velocity);
-
         }
     }
 
@@ -51,11 +52,8 @@ public class Human : MonoBehaviour
         EnableFXBlood(true);
 
         //  TODO: turn on rag doll
-    }
-
-    public virtual void ChangeAnimState()
-    {
-
+        _animationComponent.ChangeHumanState(HumanState.Die);
+        _physicComponent.EnableCollider(false);
     }
 
     public virtual void GetBulletAffect(Vector2 bulletExplodePos, float bulletExplodeRadius, float bulletAffectForce)
@@ -102,9 +100,13 @@ public class Human : MonoBehaviour
         EnableFXBlood(false);
 
         //  TODO: Turn off rag doll
+        this._animationComponent.ResetState();
+        this._animationComponent.ChangeHumanState(HumanState.Idle);
 
         //  TODO: Reset physic
         this._physicComponent.ResetVelocity();
+        this._physicComponent.EnableCollider(true);
+
 
         //  TODO: Reset transform
         this.transform.localPosition = _startPos;

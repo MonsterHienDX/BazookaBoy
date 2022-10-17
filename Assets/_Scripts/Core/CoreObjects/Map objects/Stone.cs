@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Stone : PlatformBase
 {
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T)) Reset();
-    }
-
     public override void Init(Vector3 pos)
     {
         base.Init(pos);

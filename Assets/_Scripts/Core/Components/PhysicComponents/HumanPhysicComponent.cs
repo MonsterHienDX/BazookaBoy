@@ -9,5 +9,5 @@ public class HumanPhysicComponent : PhysicComponentBase
 
     }
 
-
+    public void EnableCollider(bool enable) => _collider2D.enabled = enable;
 }

@@ -17,11 +17,6 @@ public class DestructiblePlatform : PlatformBase
         this._splitter = this.GetComponent<D2dSplitter>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T)) Reset();
-    }
-
     public override void Enable(bool enable)
     {
         base.Enable(enable);

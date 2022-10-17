@@ -1,17 +1,4 @@
-﻿public enum GameObjectTag
-{
-    Car,
-    Slot,
-    Barrier,
-    Entry,
-    CarPark,
-    NPC,
-    PickupObject,
-    Sand,
-    SpeedHump,
-}
-
-public enum SoundName
+﻿public enum SoundName
 {
     ButtonClick,
 }
@@ -26,4 +13,16 @@ public enum LevelType
     Campaign = 0,
     Challenge = 1,
     Bonus = 2,
+}
+
+public enum GameObjectTag
+{
+
+}
+
+public enum HumanState
+{
+    Idle,
+    Win,
+    Die,
 }
