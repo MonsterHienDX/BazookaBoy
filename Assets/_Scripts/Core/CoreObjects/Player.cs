@@ -24,11 +24,6 @@ public class Player : Human
         EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     protected override void Update()
     {
         base.Update();

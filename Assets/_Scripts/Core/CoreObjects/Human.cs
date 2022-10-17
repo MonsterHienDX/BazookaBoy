@@ -26,11 +26,6 @@ public class Human : MonoBehaviour
         EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
     }
 
-    protected virtual void Start()
-    {
-        Reset();
-    }
-
     private void HandleEventResetDataLevel(object param = null)
     {
         Reset();
