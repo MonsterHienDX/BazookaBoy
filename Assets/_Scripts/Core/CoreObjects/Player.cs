@@ -17,7 +17,7 @@ public class Player : Human
     protected override void Start()
     {
         base.Start();
-        _aimSystem.Init(this.transform);
+        // _aimSystem.Init(this.transform);
     }
 
     protected override void Update()
