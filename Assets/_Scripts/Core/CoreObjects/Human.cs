@@ -15,9 +15,34 @@ public class Human : MonoBehaviour
     protected Vector3 _startPos;
     protected Vector3 _startRot;
 
+    private void OnEnable()
+    {
+        EventDispatcher.Instance.RegisterListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+    }
+
+    private void OnDisable()
+    {
+        EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+    }
+
     protected virtual void Start()
     {
-        ResetState();
+        Reset();
+    }
+
+    private void HandleEventResetDataLevel(object param = null)
+    {
+        Reset();
+    }
+
+    private void Update()
+    {
+        if (this._physicComponent._rb2D.velocity != Vector2.zero)
+        {
+            Debug.Log("_physicComponent._rb2D.velocity: " + _physicComponent._rb2D.velocity);
+            CheckDeathByForce(_physicComponent._rb2D.velocity);
+
+        }
     }
 
     public virtual void Death()
@@ -33,12 +58,6 @@ public class Human : MonoBehaviour
 
     }
 
-    public void ResetState()
-    {
-        EnableFXBlood(false);
-        this.isDie = false;
-    }
-
     public virtual void GetBulletAffect(Vector2 bulletExplodePos, float bulletExplodeRadius, float bulletAffectForce)
     {
         Vector2 direction = (Vector2)this.transform.position - bulletExplodePos;
@@ -48,7 +67,12 @@ public class Human : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!CanSufferForce(collision.relativeVelocity))
+        CheckDeathByForce(this._physicComponent._rb2D.velocity);
+    }
+
+    public void CheckDeathByForce(Vector2 force)
+    {
+        if (!CanSufferForce(force))
         {
             Death();
         }
@@ -85,6 +109,8 @@ public class Human : MonoBehaviour
         //  TODO: Reset transform
         this.transform.localPosition = _startPos;
         this.transform.localEulerAngles = _startRot;
+
+        this.isDie = false;
     }
 
     public virtual void InitTransform(Vector3 pos)

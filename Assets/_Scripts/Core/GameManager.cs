@@ -16,7 +16,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     [SerializeField] private MapObjectManager _mapObjectManager;
     [SerializeField] private EnemyManager _enemyManager;
     [SerializeField] private Player _player;
-    [SerializeField] private int indexLevelNumberToLoad;
     public int levelAmount { get; private set; }
 
     protected override void Awake()
@@ -55,12 +54,14 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         ResetDataLevel();
 
         //  TODO: Load new level
+        int indexLevelNumberToLoad =
+            (UserData.LevelNumber > levelAmount) ? CommonFunctions.RandomRange(0, levelAmount - 1) : UserData.LevelNumber - 1;
         LevelInfo levelInfo = dataLevel.levelInfos[indexLevelNumberToLoad];
 
         _mapObjectManager.SpawnGround(levelInfo.groundInfo);
         _mapObjectManager.SpawnStones(levelInfo.stones);
         _mapObjectManager.SpawnWoods(levelInfo.woods);
-        _enemyManager.SpawnEnemies(levelInfo.enemies);
+        _enemyManager.Init(levelInfo.enemies);
         _player.InitTransform(levelInfo.playerPos);
 
         this.isPlaying = true;
@@ -68,39 +69,43 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     public void LoadLevelByLevelIndex(int indexLevel)
     {
-        UserData.LevelNumberTest = indexLevel;
-
-        ReLoadScene();
-        this.indexLevelNumberToLoad = UserData.LevelNumberTest;
-
+        UserData.LevelNumber = indexLevel;
         LoadLevel();
+    }
+
+    public void LoadNextLevel()
+    {
+
     }
 
     public async UniTask WinLevel()
     {
-        // EndLevel();
+        if (!isPlaying) return;
+        EndLevel();
+        UserData.LevelNumber++;
+        Debug.Log("Win level");
 
         //  TODO: Summary resources
 
         //  TODO: Show popup win
-        // _endLevelPanel.ShowPopupEndLevel(true);
-        await UniTask.Delay(0);
-        Debug.Log("Win level");
-        // await UniTask.WaitUntil(() => !_endLevelPanel.isShowing);
+        await UniTask.Delay(3000);
+        _endLevelPanel.ShowPopupEndLevel(true);
+        await UniTask.WaitUntil(() => !_endLevelPanel.isShowing);
 
-        // LoadLevel();
+        LoadLevel();
     }
 
     public async UniTask LoseLevel()
     {
-        // EndLevel();
-
-        // _endLevelPanel.ShowPopupEndLevel(false);
-        await UniTask.Delay(0);
+        if (!isPlaying) return;
         Debug.Log("Lose level");
-        // await UniTask.WaitUntil(() => !_endLevelPanel.isShowing);
+        EndLevel();
 
-        // LoadLevel();
+        await UniTask.Delay(3000);
+        _endLevelPanel.ShowPopupEndLevel(false);
+        await UniTask.WaitUntil(() => !_endLevelPanel.isShowing);
+
+        LoadLevel();
     }
 
     private void EndLevel()
@@ -108,7 +113,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         //  TODO: Stop checking physic
 
         this.isPlaying = false;
-
     }
 
     private void ReLoadScene()

@@ -55,7 +55,6 @@ public class PlatformBase : MonoBehaviour
 
     public virtual void Init(Vector3 pos)
     {
-        Debug.Log("Init platform: " + this.name);
         this.tag = "DestructibleObjects";
         this.transform.localPosition = pos;
         this._startPos = pos;

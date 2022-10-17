@@ -38,6 +38,11 @@ public class Enemy : Human
         _meshRenderer.gameObject.SetActive(enable);
     }
 
+    public override void Reset()
+    {
+        base.Reset();
+    }
+
     private void HandleEventResetDataLevel(object param = null)
     {
         this.Enable(false);

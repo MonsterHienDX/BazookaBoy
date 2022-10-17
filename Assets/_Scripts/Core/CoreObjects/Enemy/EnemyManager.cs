@@ -30,15 +30,10 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    public void Init()
+    public void Init(EnemyInfo[] enemyInfos)
     {
-
-    }
-
-
-    public void Reset()
-    {
-
+        enemyAmount = enemyInfos.Length;
+        SpawnEnemies(enemyInfos);
     }
 
     public void SpawnEnemies(EnemyInfo[] enemyInfos)
