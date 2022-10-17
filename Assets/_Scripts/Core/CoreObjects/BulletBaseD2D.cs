@@ -24,11 +24,13 @@ public class BulletBaseD2D : MonoBehaviour
 
     public void EnableBullet(bool enable)
     {
+        Debug.Log($"{this.name} enable: + {enable}");
         this._physicComponent.EnablePhysic(enable);
         isActive = enable;
         _renderer.enabled = enable;
         hasExploded = !enable;
         _fxComponent.KillFX();
+        _physicComponent.ResetVelocity();
     }
 
     public void Explode(Vector2 position)

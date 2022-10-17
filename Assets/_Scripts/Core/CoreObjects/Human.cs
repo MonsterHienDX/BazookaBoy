@@ -20,11 +20,6 @@ public class Human : MonoBehaviour
         ResetState();
     }
 
-    protected virtual void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T)) Reset();
-    }
-
     public virtual void Death()
     {
         this.isDie = true;
@@ -74,6 +69,7 @@ public class Human : MonoBehaviour
     public virtual void Enable(bool enable)
     {
         this.isActive = enable;
+        Reset();
     }
 
     public virtual void Reset()

@@ -14,18 +14,31 @@ public class Player : Human
     [SerializeField] private BulletManager _bulletManager;
     [SerializeField] private float fireForce;
 
+    private void OnEnable()
+    {
+        EventDispatcher.Instance.RegisterListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+    }
+
+    private void OnDisable()
+    {
+        EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+    }
+
     protected override void Start()
     {
         base.Start();
-        // _aimSystem.Init(this.transform);
     }
 
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
         if (!GameManager.instance.isPlaying) return;
         if (Input.GetMouseButton(0)) Aim(Input.mousePosition);
         if (Input.GetMouseButtonUp(0)) Shoot();
+    }
+
+    private void HandleEventResetDataLevel(object param = null)
+    {
+        this.Reset();
     }
 
     public void Shoot()

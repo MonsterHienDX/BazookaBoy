@@ -16,16 +16,17 @@ public class PlatformBase : MonoBehaviour
 
     private void OnEnable()
     {
-        // EventDispatcher.Instance.RegisterListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+        EventDispatcher.Instance.RegisterListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
     }
 
     private void OnDisable()
     {
-        // EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+        EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
     }
 
     protected virtual void HandleEventResetDataLevel(object param = null)
     {
+        Reset();
         this.Enable(false);
     }
 
@@ -45,7 +46,7 @@ public class PlatformBase : MonoBehaviour
     public virtual void Enable(bool enable)
     {
         this.isActive = enable;
-        this.gameObject.SetActive(enable);
+        _spriteRenderer.enabled = enable;
     }
 
     public virtual void SetSprite(Sprite sprite) => this._spriteRenderer.sprite = sprite;

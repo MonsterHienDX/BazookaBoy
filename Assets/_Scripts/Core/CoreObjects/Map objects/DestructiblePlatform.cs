@@ -9,6 +9,7 @@ public class DestructiblePlatform : PlatformBase
 {
     protected D2dDestructibleSprite _destructibleSprite;
     [SerializeField] protected D2dSplitter _splitter;
+    [SerializeField] protected D2dCollider _d2DCollider;
 
     protected virtual void Awake()
     {
@@ -23,8 +24,8 @@ public class DestructiblePlatform : PlatformBase
 
     public override void Enable(bool enable)
     {
-        // if (!enable) Reset();
         base.Enable(enable);
+        _d2DCollider.enabled = enable;
     }
 
     public override void Reset()

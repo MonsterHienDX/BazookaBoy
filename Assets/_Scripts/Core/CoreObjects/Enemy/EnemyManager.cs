@@ -51,11 +51,22 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy(EnemyInfo enemyInfo)
     {
-        Enemy enemy = Instantiate<Enemy>(enemyPrefab, enemyContainer);
-        enemy.Enable(true);
-        enemy.InitTransform(enemyInfo.pos);
-        enemy.Init(enemyInfo.type);
-        this.enemyList.Add(enemy);
+        foreach (Enemy enemy in enemyList)
+        {
+            if (!enemy.isActive)
+            {
+                enemy.Enable(true);
+                enemy.InitTransform(enemyInfo.pos);
+                enemy.Init(enemyInfo.type);
+                return;
+            }
+        }
+
+        Enemy enemyNew = Instantiate<Enemy>(enemyPrefab, enemyContainer);
+        enemyNew.Enable(true);
+        enemyNew.InitTransform(enemyInfo.pos);
+        enemyNew.Init(enemyInfo.type);
+        this.enemyList.Add(enemyNew);
     }
 
     private void HandleEventEnemyDie(object param)

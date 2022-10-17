@@ -36531,6 +36531,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 7199221244489872227}
   _rb2D: {fileID: 3504449459921487451}
   _splitter: {fileID: 7199221244489872253}
+  _d2DCollider: {fileID: 1850771107294795754}
 --- !u!114 &1850771107294795754
 MonoBehaviour:
   m_ObjectHideFlags: 0

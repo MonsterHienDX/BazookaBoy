@@ -20,6 +20,7 @@ public class PhysicComponentBase : MonoBehaviour
 
     public void ResetVelocity()
     {
+        if (_rb2D.bodyType == RigidbodyType2D.Static) return;
         this._rb2D.velocity = Vector2.zero;
     }
 }

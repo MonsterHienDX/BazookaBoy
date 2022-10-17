@@ -72,20 +72,21 @@ public class MapObjectManager : MonoBehaviour
 
     private Ground GetGround(Vector3 pos, Sprite sprite)
     {
-        // foreach (Ground ground in groundList)
-        // {
-        //     if (!ground.isActive)
-        //     {
-        //         ground.Enable(true);
-        //         ground.SetSprite(sprite);
-        //         ground.transform.localPosition = pos;
-        //         ground.Reset();
-        //         return ground;
-        //     }
-        // }
+        foreach (Ground ground in groundList)
+        {
+            if (!ground.isActive)
+            {
+                ground.Enable(true);
+                ground.SetSprite(sprite);
+                ground.Init(pos);
+                return ground;
+            }
+        }
 
         Ground groundNew = Instantiate<Ground>(groundPrefab, this.groundContainer);
         groundNew.Init(pos);
+        groundNew.Enable(true);
+
         groundNew.SetSprite(sprite);
 
         groundList.Add(groundNew);
@@ -95,7 +96,19 @@ public class MapObjectManager : MonoBehaviour
 
     private Wood GetWood(Vector3 pos)
     {
+        foreach (Wood wood in woodList)
+        {
+            if (!wood.isActive)
+            {
+                wood.Enable(true);
+                wood.Reset();
+                return wood;
+            }
+        }
+
+
         Wood woodNew = Instantiate<Wood>(woodPrefab, this.woodContainer);
+        woodNew.Enable(true);
         woodNew.Init(pos);
         woodList.Add(woodNew);
 
@@ -104,16 +117,18 @@ public class MapObjectManager : MonoBehaviour
 
     private Stone GetStone(Vector3 pos)
     {
-        // foreach (Stone stone in stoneList)
-        // {
-        //     if (!stone.isActive)
-        //     {
-        //         stone.Enable(true);
-        //         return stone;
-        //     }
-        // }
+        foreach (Stone stone in stoneList)
+        {
+            if (!stone.isActive)
+            {
+                stone.Enable(true);
+                stone.Reset();
+                return stone;
+            }
+        }
 
         Stone stoneNew = Instantiate<Stone>(stonePrefab, this.stoneContainer);
+        stoneNew.Enable(true);
         stoneNew.Init(pos);
         stoneList.Add(stoneNew);
 

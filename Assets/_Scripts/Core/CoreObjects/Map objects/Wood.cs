@@ -24,13 +24,19 @@ public class Wood : DestructiblePlatform
         this._rb2D.velocity = Vector2.zero;
         this._rb2D.drag = 0;
         base.Reset();
-        OptimizeWhenInit();
+        // OptimizeWhenInit();
     }
 
     public void OptimizeWhenInit()
     {
         this._destructibleSprite.Optimize();
         this._destructibleSprite.Optimize();
+    }
+
+    public override void Enable(bool enable)
+    {
+        base.Enable(enable);
+        _rb2D.bodyType = (enable) ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
     }
 
     public override void Init(Vector3 pos)

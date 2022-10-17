@@ -42,6 +42,12 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         LoadLevel();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X)) LoadLevel();
+
+    }
+
     public void LoadLevel()
     {
         //  TODO: Clear level data
