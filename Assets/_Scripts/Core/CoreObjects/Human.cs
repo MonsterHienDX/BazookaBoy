@@ -36,19 +36,19 @@ public class Human : MonoBehaviour
         if (!GameManager.instance.isPlaying) return;
         if (this._physicComponent._rb2D.velocity != Vector2.zero)
         {
-            Debug.Log("_physicComponent._rb2D.velocity: " + _physicComponent._rb2D.velocity);
             CheckDeathByForce(_physicComponent._rb2D.velocity);
         }
     }
 
     public virtual void Death()
     {
+        if (isDie) return;
         this.isDie = true;
         EnableFXBlood(true);
 
         //  TODO: turn on rag doll
         _animationComponent.ChangeHumanState(HumanState.Die);
-        _physicComponent.EnableCollider(false);
+        _physicComponent.EnablePhysic(false);
     }
 
     public virtual void GetBulletAffect(Vector2 bulletExplodePos, float bulletExplodeRadius, float bulletAffectForce)
@@ -65,6 +65,7 @@ public class Human : MonoBehaviour
 
     public void CheckDeathByForce(Vector2 force)
     {
+        Debug.Log($"{this.name} receive force: " + force);
         if (!CanSufferForce(force))
         {
             Death();
@@ -100,7 +101,7 @@ public class Human : MonoBehaviour
 
         //  TODO: Reset physic
         this._physicComponent.ResetVelocity();
-        this._physicComponent.EnableCollider(true);
+        this._physicComponent.EnablePhysic(true);
 
 
         //  TODO: Reset transform

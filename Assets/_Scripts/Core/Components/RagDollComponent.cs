@@ -17,23 +17,19 @@ public class RagDollComponent : MonoBehaviour
     private void Awake()
     {
         this.partAmount = joint2DList.Length;
-    }
-
-    private void Start()
-    {
         startPosList = new List<Vector3>();
         startRotList = new List<Vector3>();
         Init();
-        EnableRagdollState(true);
+        // EnableRagdollState(true);
     }
 
     public void Init()
     {
-        bodyStartPos = mainBodyRb2D.transform.position;
+        bodyStartPos = mainBodyRb2D.transform.localPosition;
         bodyStartRot = mainBodyRb2D.transform.localEulerAngles;
         foreach (HingeJoint2D joint2D in joint2DList)
         {
-            startPosList.Add(joint2D.transform.position);
+            startPosList.Add(joint2D.transform.localPosition);
             startRotList.Add(joint2D.transform.localEulerAngles);
         }
     }
@@ -48,13 +44,14 @@ public class RagDollComponent : MonoBehaviour
 
     public void ResetState()
     {
-        mainBodyRb2D.transform.position = bodyStartPos;
+        mainBodyRb2D.transform.localPosition = bodyStartPos;
         mainBodyRb2D.transform.localEulerAngles = bodyStartRot;
+
         mainBodyRb2D.velocity = Vector2.zero;
 
         for (int i = 0; i < partAmount; i++)
         {
-            joint2DList[i].transform.position = startPosList[i];
+            joint2DList[i].transform.localPosition = startPosList[i];
             joint2DList[i].transform.localEulerAngles = startRotList[i];
         }
     }

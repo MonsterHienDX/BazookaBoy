@@ -13,6 +13,7 @@ public class Player : Human
     [SerializeField] private Transform gunMuzzleTransform;
     [SerializeField] private BulletManager _bulletManager;
     [SerializeField] private float fireForce;
+    private Vector3 cachedVector3;
 
     private void OnEnable()
     {
@@ -27,6 +28,7 @@ public class Player : Human
     protected override void Update()
     {
         base.Update();
+        if (!GameManager.instance.isPlaying) return;
         if (Input.GetMouseButton(0)) Aim(Input.mousePosition);
         if (Input.GetMouseButtonUp(0)) Shoot();
     }
@@ -50,6 +52,15 @@ public class Player : Human
         //  TODO: FX shoot
 
         //  TODO: Sound shoot
+    }
+
+    public override void Reset()
+    {
+        base.Reset();
+
+        //  TODO: Reset aim direction
+        this.cachedVector3.Set(gunBarrelTransform.localEulerAngles.x, gunBarrelTransform.localEulerAngles.y, 0f);
+        this.gunBarrelTransform.localEulerAngles = cachedVector3;
     }
 
     private void Aim(Vector2 mousePos)

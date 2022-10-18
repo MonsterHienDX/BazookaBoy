@@ -63,7 +63,14 @@ public class LevelInstance : MonoBehaviour
         return groundNew;
     }
 
-    public void AddLevelData(LevelInfo levelInfo) => dataLevel.AddLevelData(levelInfo);
+    public void AddLevelData(LevelInfo levelInfo)
+    {
+        dataLevel.AddLevelData(levelInfo);
+
+        EditorUtility.SetDirty(dataLevel);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
 
     public void ClearCacheObjects()
     {

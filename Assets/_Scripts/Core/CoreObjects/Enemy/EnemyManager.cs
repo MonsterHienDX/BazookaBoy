@@ -53,6 +53,7 @@ public class EnemyManager : MonoBehaviour
                 enemy.Enable(true);
                 enemy.InitTransform(enemyInfo.pos);
                 enemy.Init(enemyInfo.type);
+                enemy.Reset();
                 return;
             }
         }

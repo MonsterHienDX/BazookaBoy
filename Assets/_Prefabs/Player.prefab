@@ -3095,7 +3095,7 @@ MonoBehaviour:
   gunBarrelTransform: {fileID: 1202371031037945000}
   gunMuzzleTransform: {fileID: 541478023}
   _bulletManager: {fileID: 0}
-  fireForce: 12
+  fireForce: 13
 --- !u!114 &1623248153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3119,7 +3119,6 @@ MonoBehaviour:
   - {fileID: 2792012967593184763}
   - {fileID: 6607351969528022282}
   mainBodyRb2D: {fileID: 2585067353484938552}
-  _animationComponent: {fileID: 6491392893925674681}
 --- !u!95 &1623248152
 Animator:
   serializedVersion: 3

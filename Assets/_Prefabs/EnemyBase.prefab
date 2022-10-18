@@ -2924,7 +2924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _physicComponent: {fileID: 8193968693890044265}
   _animationComponent: {fileID: 8193968693890044264}
-  forceCanSuffer: 1.4
+  forceCanSuffer: 1.25
   _fx_blood: {fileID: 3196938939699063964}
   _meshRenderer: {fileID: 8193968694573609847}
 --- !u!95 &900588374
