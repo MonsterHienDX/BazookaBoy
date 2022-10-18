@@ -8,5 +8,6 @@ public enum EventID
     NextLevel,
     ShowPopup,
     EnemyDie,
-    ResetDataLevel
+    ResetDataLevel,
+    OutOfBullet
 }

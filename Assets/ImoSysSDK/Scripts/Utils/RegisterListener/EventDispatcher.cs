@@ -131,3 +131,34 @@ public class EventDispatcher : SingletonObject<EventDispatcher>
 
     #endregion
 }
+#region Extension class
+/// <summary>
+/// Delare some "shortcut" for using EventDispatcher easier
+/// </summary>
+public static class EventDispatcherExtension
+{
+    // Use for registering with EventsManager
+    public static void RegisterListener(this MonoBehaviour listener, EventID eventID, Action<object> callback)
+    {
+        EventDispatcher.Instance.RegisterListener(eventID, callback);
+    }
+
+    // Use for remove with EventsManager
+    public static void RemoveListener(this MonoBehaviour listener, EventID eventID, Action<object> callback)
+    {
+        EventDispatcher.Instance.RemoveListener(eventID, callback);
+    }
+
+    // Post event with param
+    public static void PostEvent(this MonoBehaviour listener, EventID eventID, object param)
+    {
+        EventDispatcher.Instance.PostEvent(eventID, param);
+    }
+
+    // Post event with no param (param = null)
+    public static void PostEvent(this MonoBehaviour sender, EventID eventID)
+    {
+        EventDispatcher.Instance.PostEvent(eventID, null);
+    }
+}
+#endregion

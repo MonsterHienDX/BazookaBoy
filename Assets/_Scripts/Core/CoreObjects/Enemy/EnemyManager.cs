@@ -59,6 +59,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         Enemy enemyNew = Instantiate<Enemy>(enemyPrefab, enemyContainer);
+        enemyNew.name = $"Enemy {enemyList.Count}";
         enemyNew.Enable(true);
         enemyNew.InitTransform(enemyInfo.pos);
         enemyNew.Init(enemyInfo.type);

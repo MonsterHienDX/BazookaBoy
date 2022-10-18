@@ -15,8 +15,9 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     [SerializeField] private LevelInfoSO dataLevel;
     [SerializeField] private MapObjectManager _mapObjectManager;
     [SerializeField] private EnemyManager _enemyManager;
-    [SerializeField] private Player _player;
+    [field: SerializeField] public Player _player { get; private set; }
     public int levelAmount { get; private set; }
+    public bool hasPopupShowing { get; private set; }
 
     protected override void Awake()
     {
@@ -29,11 +30,13 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     private void OnEnable()
     {
         reloadSceneButton.onClick.AddListener(ReLoadScene);
+        this.RegisterListener(EventID.ShowPopup, HandleEventHasPopupShowing);
     }
 
     private void OnDisable()
     {
         reloadSceneButton.onClick.RemoveListener(ReLoadScene);
+        this.RemoveListener(EventID.ShowPopup, HandleEventHasPopupShowing);
     }
 
     private void Start()
@@ -75,7 +78,15 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     public void LoadNextLevel()
     {
+        EndLevel();
+        UserData.LevelNumber++;
+        LoadLevel();
+    }
 
+    public void ReplayLevel()
+    {
+        EndLevel();
+        LoadLevel();
     }
 
     public async UniTask WinLevel()
@@ -125,4 +136,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         //  TODO: Reset data level
         EventDispatcher.Instance.PostEvent(EventID.ResetDataLevel);
     }
+
+    private void HandleEventHasPopupShowing(object param = null) => hasPopupShowing = (bool)param;
 }

@@ -37,7 +37,6 @@ public class PopupBase : MonoBehaviour
     {
         HidePopup();
         AudioManager.instance.PlayManagerSound(SoundName.ButtonClick);
-        // AdsController.Instances.ShowInterstitial(() => { }, () => { }, InterstitialPositionType.Back);
     }
 
     public virtual void HidePopup()
