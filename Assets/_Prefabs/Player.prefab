@@ -3094,7 +3094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _physicComponent: {fileID: 6491392893925674680}
   _animationComponent: {fileID: 6491392893925674681}
-  forceCanSuffer: 2
+  forceCanSuffer: 1.5
   _fx_blood: {fileID: 1180527153}
   _aimSystem: {fileID: 6491392893925674679}
   gunBarrelTransform: {fileID: 2087412455786408097}
@@ -3102,7 +3102,7 @@ MonoBehaviour:
   bodyTransform: {fileID: 5742672706892017728}
   neckTransform: {fileID: 6515712192335091902}
   _bulletManager: {fileID: 0}
-  fireForce: 13
+  fireForce: 15
   maxBullet: 3
 --- !u!114 &1623248153
 MonoBehaviour:

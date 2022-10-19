@@ -78,7 +78,7 @@ public class BulletBaseD2D : MonoBehaviour
         this._physicComponent.PushForce(direction, force);
 
         if (explodeWithDelayCO != null) StopCoroutine(explodeWithDelayCO);
-        explodeWithDelayCO = ExplodeWithDelay(5f);
+        explodeWithDelayCO = ExplodeWithDelay(8f);
         StartCoroutine(explodeWithDelayCO);
     }
 

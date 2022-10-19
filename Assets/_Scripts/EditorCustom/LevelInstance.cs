@@ -11,56 +11,35 @@ public class LevelInstance : MonoBehaviour
     public MapObjectInfo groundInfo;
     public List<MapObjectInfo> woodInfoList;
     public List<MapObjectInfo> stoneInfoList;
+    public List<MapObjectInfo> roundStoneInfoList;
     public List<EnemyInfo> enemyInfoList;
     [SerializeField] private Ground groundPrefab;
     [SerializeField] private Wood woodPrefab;
     [SerializeField] private Stone stonePrefab;
+    [SerializeField] private RoundStone roundStonePrefab;
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private Sprite _surfaceSprite;
     [SerializeField] private Sprite _solidSoilSprite;
     [SerializeField] private Transform groundContainer;
     [SerializeField] private Transform woodContainer;
     [SerializeField] private Transform stoneContainer;
+    [SerializeField] private Transform roundStoneContainer;
     [SerializeField] private Transform enemyContainer;
 
     [SerializeField] private Player player;
+
+    private void Awake()
+    {
+        this.gameObject.SetActive(false);
+    }
 
     public void InitCacheObjects()
     {
         var cacheGround = Instantiate<Ground>(groundPrefab, groundContainer);
         var cacheWood = Instantiate<Wood>(woodPrefab, woodContainer);
         var cacheStone = Instantiate<Stone>(stonePrefab, stoneContainer);
+        var cacheRoundStone = Instantiate<RoundStone>(roundStonePrefab, roundStoneContainer);
         var cacheEnemy = Instantiate<Enemy>(enemyPrefab, enemyContainer);
-    }
-
-    public void DrawMapDemo()
-    {
-        SpawnGround();
-        player.transform.position = playerPos;
-    }
-
-    private void SpawnGround()
-    {
-        Vector3 cachedPos = Vector3.zero;
-        Sprite cachedSprite = _surfaceSprite;
-        for (int y = 0; y < groundInfo.size.y; y++)
-        {
-            for (int x = 0; x < groundInfo.size.x; x++)
-            {
-                cachedPos.Set((x - groundInfo.size.x / 2) * 1.28f * 4f, y * 1.28f * 4f, 0);
-                cachedSprite = (y < groundInfo.size.y - 1) ? _solidSoilSprite : _surfaceSprite;
-                GetGround(cachedPos, cachedSprite);
-            }
-        }
-        groundContainer.transform.position = groundInfo.centerPos;
-    }
-
-    private Ground GetGround(Vector3 pos, Sprite sprite)
-    {
-        Ground groundNew = Instantiate<Ground>(groundPrefab, this.groundContainer);
-        groundNew.Init(pos);
-        groundNew.SetSprite(sprite);
-        return groundNew;
     }
 
     public void AddLevelData(LevelInfo levelInfo)
@@ -78,10 +57,12 @@ public class LevelInstance : MonoBehaviour
         while (woodContainer.childCount > 0) DestroyImmediate(woodContainer.GetChild(0).gameObject);
         while (stoneContainer.childCount > 0) DestroyImmediate(stoneContainer.GetChild(0).gameObject);
         while (enemyContainer.childCount > 0) DestroyImmediate(enemyContainer.GetChild(0).gameObject);
+        while (roundStoneContainer.childCount > 0) DestroyImmediate(roundStoneContainer.GetChild(0).gameObject);
 
         woodInfoList.Clear();
         stoneInfoList.Clear();
         enemyInfoList.Clear();
+        roundStoneInfoList.Clear();
 
         groundContainer.transform.position = Vector3.zero;
     }
@@ -93,6 +74,7 @@ public class LevelInstance : MonoBehaviour
         woodInfoList.Clear();
         stoneInfoList.Clear();
         enemyInfoList.Clear();
+        roundStoneInfoList.Clear();
 
         Vector2 cacheVector2 = Vector2.zero;
         this.groundInfo.centerPos = groundContainer.transform.localPosition;
@@ -111,7 +93,7 @@ public class LevelInstance : MonoBehaviour
         foreach (Wood wood in woodContainer.GetComponentsInChildren<Wood>())
         {
             cacheWoodInfo.centerPos = wood.transform.localPosition;
-            cacheWoodInfo.size = wood.GetSize();
+            cacheWoodInfo.size = wood.GetSizeSquare();
             if (!woodInfoList.Contains(cacheWoodInfo)) woodInfoList.Add(cacheWoodInfo);
         }
 
@@ -119,8 +101,16 @@ public class LevelInstance : MonoBehaviour
         foreach (Stone stone in stoneContainer.GetComponentsInChildren<Stone>())
         {
             cacheStoneInfo.centerPos = stone.transform.localPosition;
-            cacheStoneInfo.size = stone.GetSize();
+            cacheStoneInfo.size = stone.GetSizeSquare();
             if (!stoneInfoList.Contains(cacheStoneInfo)) stoneInfoList.Add(cacheStoneInfo);
+        }
+
+        MapObjectInfo cacheRoundStoneInfo = new MapObjectInfo();
+        foreach (RoundStone roundStone in roundStoneContainer.GetComponentsInChildren<RoundStone>())
+        {
+            cacheRoundStoneInfo.centerPos = roundStone.transform.localPosition;
+            cacheRoundStoneInfo.size = roundStone.GetSizeSquare();
+            if (!roundStoneInfoList.Contains(cacheRoundStoneInfo)) roundStoneInfoList.Add(cacheRoundStoneInfo);
         }
     }
 }

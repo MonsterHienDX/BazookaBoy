@@ -2607,7 +2607,7 @@ Transform:
   m_GameObject: {fileID: 7199221244489872255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4819247962583372876}
   m_Father: {fileID: 0}
@@ -36530,6 +36530,7 @@ MonoBehaviour:
   size: {x: 4, y: 4}
   _spriteRenderer: {fileID: 7199221244489872227}
   _rb2D: {fileID: 3504449459921487451}
+  _radius: 1
   _splitter: {fileID: 7199221244489872253}
   _d2DCollider: {fileID: 1850771107294795754}
 --- !u!114 &1850771107294795754

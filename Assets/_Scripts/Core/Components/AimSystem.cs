@@ -11,13 +11,13 @@ public class AimSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        this.RegisterListener(EventID.ResetDataLevel, HideTrajectoryLine);
+        this.RegisterListener(EventID.EndLevel, HideTrajectoryLine);
         this.RegisterListener(EventID.PlayerReloadBullet, HideTrajectoryLine);
     }
 
     private void OnDisable()
     {
-        this.RemoveListener(EventID.ResetDataLevel, HideTrajectoryLine);
+        this.RemoveListener(EventID.EndLevel, HideTrajectoryLine);
         this.RemoveListener(EventID.PlayerReloadBullet, HideTrajectoryLine);
     }
 

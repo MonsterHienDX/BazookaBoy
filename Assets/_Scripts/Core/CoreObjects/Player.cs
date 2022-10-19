@@ -71,12 +71,12 @@ public class Player : Human
         //  TODO: Calculate direction and add force
         Vector2 direction = (Vector2)this.gunMuzzleTransform.position - (Vector2)this.transform.position;
         bullet.Fire(direction.normalized, fireForce);
-        Debug.Log("Fire velocity: " + direction.normalized * fireForce);
+
         //  TODO: FX shoot
 
         //  TODO: Sound shoot
 
-        //  TODO: PostEventShoot
+        //  TODO: Post event shoot
         this.PostEvent(EventID.PlayerShot, bullet);
 
         //  TODO: Hide trajectory line 
@@ -130,28 +130,6 @@ public class Player : Human
         if (!isAiming) isAiming = true;
     }
 
-    private List<Vector2> CalculateBulletPath(Vector2 force, float aimAngle, float bulletGravityScale)
-    {
-        List<Vector2> result = new List<Vector2>();
-        Vector2 cachedCordinate = Vector2.zero;
-        float cachedX = 0f;
-        float cachedY = 0f;
-
-        Debug.Log("____Start calculate cordinate____");
-        for (float i = 0f; i < 1f; i += 0.1f)
-        {
-            // cachedX = Mathf.Cos(aimAngle) * i;
-            // cachedY = Mathf.Sin(aimAngle) * i - 0.5f * ((Physics2D.gravity.y * bulletGravityScale) * (i * i));
-            cachedX = Mathf.Cos(aimAngle) * force.magnitude * i;
-            cachedY = Mathf.Sin(aimAngle) * force.magnitude * ((Physics2D.gravity.y * bulletGravityScale) * (i * i));
-            cachedCordinate.Set(cachedX, cachedY);
-            result.Add(cachedCordinate);
-            Debug.Log(cachedCordinate);
-        }
-
-        return result;
-    }
-
     public override void Death()
     {
         base.Death();
@@ -160,9 +138,4 @@ public class Player : Human
     }
 
     public void RefillBullet() => cachedMaxBullet = maxBullet;
-
-    public IEnumerator CheckLoseByOutOfBullet(float delayLose)
-    {
-        yield return ExtensionClass.GetWaitForSeconds(delayLose);
-    }
 }

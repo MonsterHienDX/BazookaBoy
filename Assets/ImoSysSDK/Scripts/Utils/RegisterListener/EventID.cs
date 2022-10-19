@@ -12,5 +12,6 @@ public enum EventID
     OutOfBullet,
     PlayerShot,
     PlayerReloadBullet,
-    LoadLevel
+    LoadLevel,
+    EndLevel
 }

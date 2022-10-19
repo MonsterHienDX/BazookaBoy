@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5810017559973330981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5810017561395535645}
   m_Father: {fileID: 0}
@@ -34483,6 +34483,7 @@ MonoBehaviour:
   size: {x: 3, y: 0.5}
   _spriteRenderer: {fileID: 5810017559973330977}
   _rb2D: {fileID: 5810017559973330991}
+  _radius: 1
   _splitter: {fileID: 5810017559973330988}
   _d2DCollider: {fileID: 5810017559973330990}
   _woodSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}

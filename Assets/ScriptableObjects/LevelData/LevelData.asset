@@ -70,12 +70,12 @@ MonoBehaviour:
       size: {x: 0.5, y: 0.5}
     - centerPos: {x: 0.5, y: 3.62}
       size: {x: 0.5, y: 0.5}
-    - centerPos: {x: 1.16, y: 4.56}
+    - centerPos: {x: 1, y: 4.56}
       size: {x: 1.5, y: 1.5}
     woods:
     - centerPos: {x: 0, y: -2.14}
       size: {x: 2, y: 5}
-    - centerPos: {x: 0.2, y: 2.15}
+    - centerPos: {x: 0, y: 2.15}
       size: {x: 5.5, y: 2.5}
     - centerPos: {x: 4.78, y: -4.15}
       size: {x: 5.5, y: 1}

@@ -41,7 +41,7 @@ public class PlatformBase : MonoBehaviour
         this.transform.localScale = cachedSizeVec3;
     }
 
-    public Vector2 GetSize() => size;
+    public Vector2 GetSizeSquare() => size;
 
     public virtual void Enable(bool enable)
     {

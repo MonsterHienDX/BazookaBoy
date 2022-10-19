@@ -58,7 +58,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
         //  TODO: Load new level
         int indexLevelNumberToLoad =
-            (UserData.LevelNumber > levelAmount) ? CommonFunctions.RandomRange(0, levelAmount - 1) : UserData.LevelNumber - 1;
+            (UserData.LevelNumber > levelAmount) ? UnityEngine.Random.Range(0, levelAmount) : UserData.LevelNumber - 1;
         LevelInfo levelInfo = dataLevel.levelInfos[indexLevelNumberToLoad];
 
         _mapObjectManager.SpawnGround(levelInfo.groundInfo);
@@ -74,6 +74,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     public void LoadLevelByLevelIndex(int indexLevel)
     {
+        EndLevel();
         UserData.LevelNumber = indexLevel;
         LoadLevel();
     }
@@ -126,6 +127,8 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         //  TODO: Stop checking physic
 
         this.isPlaying = false;
+
+        this.PostEvent(EventID.EndLevel);
     }
 
     private void ReLoadScene()
