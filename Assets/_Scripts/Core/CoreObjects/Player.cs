@@ -47,12 +47,11 @@ public class Player : Human
         this.isAiming = false;
 
         //  TODO: Check bullet amount
-        cachedMaxBullet -= 1;
-        if (cachedMaxBullet <= 0)
-        {
-            this.PostEvent(EventID.OutOfBullet);
+        if (cachedMaxBullet < 1)
             return;
-        }
+        if (cachedMaxBullet <= 1)
+            this.PostEvent(EventID.OutOfBullet);
+        cachedMaxBullet -= 1;
 
         //  TODO: Get bullet
         BulletBaseD2D bullet = _bulletManager.GetBullet();
