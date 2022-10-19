@@ -65,8 +65,8 @@ public class Human : MonoBehaviour
 
     public void CheckDeathByForce(Vector2 force)
     {
-        if (force.x > 0f || force.x < 0f || force.y > 0f || force.y < 0f)
-            Debug.Log($"{this.name} receive force: " + force);
+        // if (force.x > 0f || force.x < 0f || force.y > 0f || force.y < 0f)
+        // Debug.Log($"{this.name} receive force: " + force);
         if (!CanSufferForce(force))
         {
             Death();

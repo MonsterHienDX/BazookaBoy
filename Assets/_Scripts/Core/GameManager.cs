@@ -68,6 +68,8 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         _enemyManager.Init(levelInfo.enemies);
 
         this.isPlaying = true;
+
+        this.PostEvent(EventID.LoadLevel);
     }
 
     public void LoadLevelByLevelIndex(int indexLevel)

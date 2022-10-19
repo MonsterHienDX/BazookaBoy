@@ -55,6 +55,8 @@ public class OutOfBulletPopup : PopupBase
 
         GameManager.instance._player.RefillBullet();
         this.HidePopup();
+
+        this.PostEvent(EventID.PlayerReloadBullet);
     }
 
     private void SkipLevelButtonOnClick()

@@ -18,9 +18,8 @@ public class Stone : PlatformBase
 
     public override void Reset()
     {
-        this._rb2D.velocity = Vector2.zero;
+        // this._rb2D.velocity = Vector2.zero;
         this._rb2D.drag = 0;
-
         base.Reset();
     }
 }

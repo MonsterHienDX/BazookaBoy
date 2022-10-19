@@ -9,5 +9,8 @@ public enum EventID
     ShowPopup,
     EnemyDie,
     ResetDataLevel,
-    OutOfBullet
+    OutOfBullet,
+    PlayerShot,
+    PlayerReloadBullet,
+    LoadLevel
 }

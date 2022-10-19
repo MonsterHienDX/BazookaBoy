@@ -11,11 +11,13 @@ public class Player : Human
     [SerializeField] private AimSystem _aimSystem;
     [SerializeField] private Transform gunBarrelTransform;
     [SerializeField] private Transform gunMuzzleTransform;
+    [SerializeField] private Transform bodyTransform;
+    [SerializeField] private Transform neckTransform;
     [SerializeField] private BulletManager _bulletManager;
     [SerializeField] private float fireForce;
     private Vector3 cachedVector3;
     [SerializeField] private int maxBullet;
-    private int cachedMaxBullet;
+    public int cachedMaxBullet { get; private set; }
     public bool isAiming { get; private set; }
 
     private void OnEnable()
@@ -65,6 +67,9 @@ public class Player : Human
         //  TODO: FX shoot
 
         //  TODO: Sound shoot
+
+        //  TODO: PostEventShoot
+        this.PostEvent(EventID.PlayerShot, bullet);
     }
 
     public override void Reset()
@@ -80,6 +85,34 @@ public class Player : Human
     private void Aim(Vector2 mousePos)
     {
         gunBarrelTransform.rotation = _aimSystem.GetAimDirection(mousePos);
+        // bodyTransform.rotation = _aimSystem.GetAimDirection(mousePos);
+        Vector3 cachedRotNeck = neckTransform.localEulerAngles;
+
+        Debug.Log("gunBarrelTransform.localEulerAngles.z: " + gunBarrelTransform.localEulerAngles.z);
+        if ((gunBarrelTransform.localEulerAngles.z > 0 && gunBarrelTransform.localEulerAngles.z <= 90)
+            || (gunBarrelTransform.localEulerAngles.z > 270 && gunBarrelTransform.localEulerAngles.z <= 360)
+        )
+        {
+            cachedVector3.Set(bodyTransform.localEulerAngles.x, 0, gunBarrelTransform.localEulerAngles.z);
+            cachedRotNeck.Set(neckTransform.localEulerAngles.x, 0, neckTransform.localEulerAngles.z);
+        }
+        else
+        {
+            cachedVector3.Set(bodyTransform.localEulerAngles.x, 0, gunBarrelTransform.localEulerAngles.z - 180);
+            cachedRotNeck.Set(neckTransform.localEulerAngles.x, 180, neckTransform.localEulerAngles.z);
+        }
+        bodyTransform.localEulerAngles = cachedVector3;
+        neckTransform.localEulerAngles = cachedRotNeck;
+
+        // if ((gunBarrelTransform.localEulerAngles.z > -90 && gunBarrelTransform.localEulerAngles.z <= 90)
+        //     )
+        //     bodyTransform.right = gunBarrelTransform.right;
+        // else
+        // {
+        //     bodyTransform.right = gunBarrelTransform.right;
+        // }
+
+
         if (!isAiming) isAiming = true;
     }
 
@@ -94,7 +127,5 @@ public class Player : Human
     public IEnumerator CheckLoseByOutOfBullet(float delayLose)
     {
         yield return ExtensionClass.GetWaitForSeconds(delayLose);
-
     }
-
 }
