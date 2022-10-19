@@ -36,7 +36,6 @@ public class BulletBaseD2D : MonoBehaviour
     {
         //  TODO: push force to all objects around
 
-
         //  TODO: Destruct map
         explosion.Explode(position);
         hasExploded = true;
@@ -93,8 +92,8 @@ public class BulletBaseD2D : MonoBehaviour
     {
         Explode(collision.GetContact(0).point);
         Human enemy = collision.gameObject.GetComponent<Human>();
-        enemy.GetBulletAffect(this.transform.position, this.explosion.StampSize.x, this.explosion.ForcePerRay);
-        enemy.Death();
+        enemy?.GetBulletAffect(this.transform.position, this.explosion.StampSize.x, this.explosion.ForcePerRay);
+        enemy?.Death();
     }
 
     private void HandleCollideWithGround(Collision2D collision)

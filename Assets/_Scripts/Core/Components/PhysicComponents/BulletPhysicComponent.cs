@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletPhysicComponent : PhysicComponentBase
 {
-
     private void FixedUpdate()
     {
         this.transform.right = _rb2D.velocity;
