@@ -58,7 +58,7 @@ public class AimSystem : MonoBehaviour
         Vector2 gravityAccel = Physics2D.gravity * rb2D.gravityScale * timeStep * timeStep;
 
         float drag = 1f - timeStep * rb2D.drag;
-        Vector2 moveStep = velocity * timeStep;
+        Vector2 moveStep = velocity * timeStep / rb2D.mass;
 
         for (int i = 0; i < steps; i++)
         {
