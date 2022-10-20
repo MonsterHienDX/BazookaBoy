@@ -132,6 +132,8 @@ public class Player : Human
 
     public override void Death()
     {
+        if (!GameManager.instance.isPlaying) return;
+
         base.Death();
         this._aimSystem.HideTrajectoryLine();
         _ = GameManager.instance.LoseLevel();

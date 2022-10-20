@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
 
 public class LevelInstance : MonoBehaviour
 {
-    [SerializeField] private LevelInfoSO dataLevel;
+    [field: SerializeField] public LevelInfoSO dataLevel { get; private set; }
     [field: SerializeField] public Vector3 playerPos { get; private set; }
     [field: SerializeField] public LevelType levelType { get; private set; }
     public MapObjectInfo groundInfo;
@@ -45,10 +45,6 @@ public class LevelInstance : MonoBehaviour
     public void AddLevelData(LevelInfo levelInfo)
     {
         dataLevel.AddLevelData(levelInfo);
-
-        EditorUtility.SetDirty(dataLevel);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
     }
 
     public void ClearCacheObjects()
@@ -114,60 +110,3 @@ public class LevelInstance : MonoBehaviour
         }
     }
 }
-
-#if UNITY_EDITOR
-[CustomEditor(typeof(LevelInstance))]
-public class LevelInstanceEditor : Editor
-{
-    LevelInstance levelInstance;
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-        levelInstance = (LevelInstance)target;
-
-        if (GUILayout.Button("Spawn objects"))
-        {
-            levelInstance.InitCacheObjects();
-        }
-
-        if (GUILayout.Button("Update data level to cache"))
-        {
-            levelInstance.UpdateObjectsDataToCache();
-        }
-
-        if (GUILayout.Button("Save data level"))
-        {
-            SaveLevelData();
-        }
-
-        if (GUILayout.Button("Clear objects"))
-        {
-            levelInstance.ClearCacheObjects();
-        }
-
-    }
-
-    private void SaveLevelData()
-    {
-        LevelInfo levelInfo = new LevelInfo();
-
-        levelInfo.enemies = levelInstance.enemyInfoList.ToArray();
-
-        levelInfo.playerPos = levelInstance.playerPos;
-
-        levelInfo.groundInfo = levelInstance.groundInfo;
-
-        levelInfo.levelType = levelInstance.levelType;
-
-        levelInfo.stones = levelInstance.stoneInfoList.ToArray();
-
-        levelInfo.roundStones = levelInstance.roundStoneInfoList.ToArray();
-
-        levelInfo.woods = levelInstance.woodInfoList.ToArray();
-
-        levelInstance.AddLevelData(levelInfo);
-    }
-
-
-}
-#endif

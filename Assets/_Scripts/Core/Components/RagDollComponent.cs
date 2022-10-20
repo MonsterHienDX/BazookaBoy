@@ -55,4 +55,9 @@ public class RagDollComponent : MonoBehaviour
             joint2DList[i].transform.localEulerAngles = startRotList[i];
         }
     }
+
+    public void AddForceMainBody(Vector2 force)
+    {
+        mainBodyRb2D.AddForce(force, ForceMode2D.Impulse);
+    }
 }

@@ -20,7 +20,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     public bool hasPopupShowing { get; private set; }
     public bool delayAfterLoadLevelDone { get; private set; }
 
-
     protected override void Awake()
     {
         base.Awake();

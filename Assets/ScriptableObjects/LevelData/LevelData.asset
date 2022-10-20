@@ -129,3 +129,46 @@ MonoBehaviour:
     - type: 0
       pos: {x: -0.15999997, y: 6.26}
     playerPos: {x: -5.18, y: -0.81}
+  - levelType: 0
+    groundInfo:
+      centerPos: {x: 1.5, y: -9.21}
+      size: {x: 4, y: 1}
+    stones: []
+    roundStones: []
+    woods:
+    - centerPos: {x: -1.9000001, y: -5.68}
+      size: {x: 10, y: 2}
+    - centerPos: {x: 7.6000004, y: -5.68}
+      size: {x: 6, y: 2}
+    - centerPos: {x: -0.6499996, y: -3.1799998}
+      size: {x: 3, y: 3}
+    - centerPos: {x: -0.6499996, y: -0.9299998}
+      size: {x: 0.5, y: 1.5}
+    - centerPos: {x: -0.6499996, y: 0.07000017}
+      size: {x: 2, y: 0.5}
+    - centerPos: {x: 1.27, y: -4.21}
+      size: {x: 1, y: 1}
+    - centerPos: {x: 3.77, y: -4.46}
+      size: {x: 3, y: 0.5}
+    - centerPos: {x: 1.52, y: -3.21}
+      size: {x: 0.5, y: 1}
+    - centerPos: {x: 5.77, y: -4.21}
+      size: {x: 1, y: 1}
+    - centerPos: {x: 5.52, y: -3.21}
+      size: {x: 0.5, y: 1}
+    - centerPos: {x: 3.6000004, y: -2.4299998}
+      size: {x: 5, y: 0.5}
+    - centerPos: {x: 3.96, y: -1.4299998}
+      size: {x: 0.5, y: 1.5}
+    - centerPos: {x: 4.71, y: -0.42999983}
+      size: {x: 2, y: 0.5}
+    - centerPos: {x: 5.44, y: -1.4299998}
+      size: {x: 0.5, y: 1.5}
+    enemies:
+    - type: 0
+      pos: {x: -0.6199999, y: 0.8299999}
+    - type: 0
+      pos: {x: 3.38, y: -3.67}
+    - type: 0
+      pos: {x: 4.63, y: -1.6700001}
+    playerPos: {x: -5.18, y: -4.14}

@@ -27,4 +27,11 @@ public class RoundStone : PlatformBase
         base.Enable(enable);
         _collider2D.enabled = enable;
     }
+
+    public override void Reset()
+    {
+        base.Reset();
+        _rb2D.drag = 0;
+        _rb2D.velocity = Vector2.zero;
+    }
 }

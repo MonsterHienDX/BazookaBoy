@@ -5064,9 +5064,9 @@ MonoBehaviour:
   StampSize: {x: 1.5, y: 1.5}
   StampRandomDirection: 1
   Raycast: 1
-  RaycastRadius: 2.2
+  RaycastRadius: 1.6
   RaycastCount: 40
-  ForcePerRay: 30
+  ForcePerRay: 12
   DamagePerRay: 1
 --- !u!114 &4382138673483868257
 MonoBehaviour:

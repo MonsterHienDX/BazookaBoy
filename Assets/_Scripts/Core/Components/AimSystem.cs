@@ -24,6 +24,7 @@ public class AimSystem : MonoBehaviour
     private void Start()
     {
         rootPos = new Vector2(Screen.width * 0.4f, Screen.height * 0.35f);
+        // rootPos = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         rootUI.anchoredPosition = rootPos;
     }
 

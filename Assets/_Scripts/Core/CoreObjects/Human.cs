@@ -49,6 +49,7 @@ public class Human : MonoBehaviour
 
         //  TODO: turn on rag doll
         _animationComponent.ChangeHumanState(HumanState.Die);
+        _animationComponent.AddContinueForceToAnimBody(_physicComponent.GetCurrentVelocity());
         _physicComponent.EnablePhysic(false);
     }
 
@@ -83,8 +84,8 @@ public class Human : MonoBehaviour
 
     private void CheckDieByMapObjects()
     {
-        if (Mathf.Abs(this._physicComponent.GetCurrentVelocity().x) > 0.4f
-            || Mathf.Abs(this._physicComponent.GetCurrentVelocity().y) > 0.4f
+        if (Mathf.Abs(this._physicComponent.GetCurrentVelocity().x) > forceCanSuffer
+            || Mathf.Abs(this._physicComponent.GetCurrentVelocity().y) > forceCanSuffer
         )
             Death();
     }

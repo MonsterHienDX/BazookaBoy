@@ -61,11 +61,12 @@ public class AnimationComponent : MonoBehaviour
 
     public void ChangeAnimState()
     {
-
     }
 
     public void ResetState()
     {
         _ragDollComponent.ResetState();
     }
+
+    public void AddContinueForceToAnimBody(Vector2 force) => _ragDollComponent.AddForceMainBody(force);
 }
