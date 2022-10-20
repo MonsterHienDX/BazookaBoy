@@ -66,6 +66,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         _mapObjectManager.SpawnGround(levelInfo.groundInfo);
         _mapObjectManager.SpawnStones(levelInfo.stones);
         _mapObjectManager.SpawnWoods(levelInfo.woods);
+        _mapObjectManager.SpawnRoundStones(levelInfo.roundStones);
         _player.InitTransform(levelInfo.playerPos);
         _enemyManager.Init(levelInfo.enemies);
 

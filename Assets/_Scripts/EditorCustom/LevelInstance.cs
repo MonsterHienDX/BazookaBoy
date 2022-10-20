@@ -161,6 +161,8 @@ public class LevelInstanceEditor : Editor
 
         levelInfo.stones = levelInstance.stoneInfoList.ToArray();
 
+        levelInfo.roundStones = levelInstance.roundStoneInfoList.ToArray();
+
         levelInfo.woods = levelInstance.woodInfoList.ToArray();
 
         levelInstance.AddLevelData(levelInfo);

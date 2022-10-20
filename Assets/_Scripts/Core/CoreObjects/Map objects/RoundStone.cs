@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class RoundStone : PlatformBase
 {
-    [SerializeField] protected float _radius = 1f;
-    [SerializeField] private Collider2D _collider2D;
+    protected float _radius = 0.5f;
+    [SerializeField] private CircleCollider2D _collider2D;
 
     public override void SetSize(Vector2 size)
     {
         this._radius = size.x;
         this.transform.localScale = Vector3.one * _radius;
+        _collider2D.radius = (0.5f * _radius / 2);
+    }
+
+    public override void Init(Vector3 pos)
+    {
+        base.Init(pos);
+        this.name = "Round Stone";
     }
 
     public float GetSizeRound() => _radius;

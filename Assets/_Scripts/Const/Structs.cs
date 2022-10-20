@@ -22,6 +22,7 @@ public struct LevelInfo
     public LevelType levelType;
     public MapObjectInfo groundInfo;
     public MapObjectInfo[] stones;
+    public MapObjectInfo[] roundStones;
     public MapObjectInfo[] woods;
     public EnemyInfo[] enemies;
     public Vector2 playerPos;

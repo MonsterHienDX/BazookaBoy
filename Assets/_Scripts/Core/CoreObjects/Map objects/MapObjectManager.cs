@@ -7,14 +7,17 @@ public class MapObjectManager : MonoBehaviour
     private List<Ground> groundList;
     private List<Wood> woodList;
     private List<Stone> stoneList;
+    private List<RoundStone> roundStoneList;
     [SerializeField] private Sprite _surfaceSprite;
     [SerializeField] private Sprite _solidSoilSprite;
     [SerializeField] private Ground groundPrefab;
     [SerializeField] private Wood woodPrefab;
     [SerializeField] private Stone stonePrefab;
+    [SerializeField] private RoundStone roundStonePrefab;
     [SerializeField] private Transform groundContainer;
     [SerializeField] private Transform woodContainer;
     [SerializeField] private Transform stoneContainer;
+    [SerializeField] private Transform roundStoneContainer;
 
 
     private void Awake()
@@ -22,6 +25,7 @@ public class MapObjectManager : MonoBehaviour
         groundList = new List<Ground>();
         woodList = new List<Wood>();
         stoneList = new List<Stone>();
+        roundStoneList = new List<RoundStone>();
     }
 
     public void SpawnGround(MapObjectInfo groundInfo)
@@ -105,8 +109,6 @@ public class MapObjectManager : MonoBehaviour
                 return wood;
             }
         }
-
-
         Wood woodNew = Instantiate<Wood>(woodPrefab, this.woodContainer);
         woodNew.Enable(true);
         woodNew.Init(pos);
@@ -133,5 +135,40 @@ public class MapObjectManager : MonoBehaviour
         stoneList.Add(stoneNew);
 
         return stoneNew;
+    }
+
+    private RoundStone GetRoundStone(Vector3 pos)
+    {
+        foreach (RoundStone roundStone in roundStoneList)
+        {
+            if (!roundStone.isActive)
+            {
+                roundStone.Enable(true);
+                roundStone.Reset();
+                return roundStone;
+            }
+        }
+
+        RoundStone roundStoneNew = Instantiate<RoundStone>(roundStonePrefab, this.roundStoneContainer);
+        roundStoneNew.Enable(true);
+        roundStoneNew.Init(pos);
+        roundStoneList.Add(roundStoneNew);
+
+        return roundStoneNew;
+    }
+
+    private void SpawnRoundStone(MapObjectInfo roundStoneInfo)
+    {
+        RoundStone roundStone = GetRoundStone(roundStoneInfo.centerPos);
+        roundStone.SetSize(roundStoneInfo.size);
+        roundStone.SetPosition(roundStoneInfo.centerPos);
+    }
+
+    public void SpawnRoundStones(MapObjectInfo[] roundStoneInfos)
+    {
+        foreach (MapObjectInfo roundStoneInfo in roundStoneInfos)
+        {
+            SpawnRoundStone(roundStoneInfo);
+        }
     }
 }
