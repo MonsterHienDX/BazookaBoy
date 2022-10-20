@@ -3653,10 +3653,6 @@ PrefabInstance:
       propertyPath: _bulletManager
       value: 
       objectReference: {fileID: 1413849315}
-    - target: {fileID: 6491392893925674682, guid: 8af7d2d53dc903f4a87dd75ddfba2dcc, type: 3}
-      propertyPath: forceCanSuffer
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 6491392893925674685, guid: 8af7d2d53dc903f4a87dd75ddfba2dcc, type: 3}
       propertyPath: m_RootOrder
       value: 2
