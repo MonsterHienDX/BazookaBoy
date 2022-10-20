@@ -18,6 +18,8 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     [field: SerializeField] public Player _player { get; private set; }
     public int levelAmount { get; private set; }
     public bool hasPopupShowing { get; private set; }
+    public bool delayAfterLoadLevelDone { get; private set; }
+
 
     protected override void Awake()
     {
@@ -68,6 +70,8 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         _enemyManager.Init(levelInfo.enemies);
 
         this.isPlaying = true;
+
+        _ = DelayCheckDieWhenLoadLevel(Const.DELAY_AFTER_LOAD_LEVEL);
 
         this.PostEvent(EventID.LoadLevel);
     }
@@ -143,4 +147,12 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     }
 
     private void HandleEventHasPopupShowing(object param = null) => hasPopupShowing = (bool)param;
+
+    private async UniTask DelayCheckDieWhenLoadLevel(int delay)
+    {
+        delayAfterLoadLevelDone = false;
+        await UniTask.Delay(delay);
+        delayAfterLoadLevelDone = true;
+    }
+
 }

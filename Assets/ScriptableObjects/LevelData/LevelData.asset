@@ -32,7 +32,7 @@ MonoBehaviour:
       pos: {x: 0.35, y: -1.1}
     - type: 0
       pos: {x: 1.5, y: 2.1}
-    playerPos: {x: -3.4, y: -1}
+    playerPos: {x: -3.4, y: -1.15}
   - levelType: 0
     groundInfo:
       centerPos: {x: 2, y: -8.8}
@@ -56,10 +56,10 @@ MonoBehaviour:
       pos: {x: 5.38, y: -5.65}
     - type: 0
       pos: {x: 3.09, y: -3.15}
-    playerPos: {x: -4.31, y: -5.61}
+    playerPos: {x: -4.31, y: -5.71}
   - levelType: 0
     groundInfo:
-      centerPos: {x: 0, y: -7.23}
+      centerPos: {x: 3.5, y: -7.23}
       size: {x: 4, y: 1}
     stones:
     - centerPos: {x: 0, y: 0.62}
@@ -75,7 +75,7 @@ MonoBehaviour:
     woods:
     - centerPos: {x: 0, y: -2.14}
       size: {x: 2, y: 5}
-    - centerPos: {x: 0, y: 2.15}
+    - centerPos: {x: -0.1, y: 2.15}
       size: {x: 5.5, y: 2.5}
     - centerPos: {x: 4.78, y: -4.15}
       size: {x: 5.5, y: 1}

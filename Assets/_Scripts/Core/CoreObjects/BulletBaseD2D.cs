@@ -34,6 +34,7 @@ public class BulletBaseD2D : MonoBehaviour
 
     public void Explode(Vector2 position)
     {
+        // Debug.Log($"{this.name} explode");
         //  TODO: push force to all objects around
 
         //  TODO: Destruct map
@@ -53,6 +54,7 @@ public class BulletBaseD2D : MonoBehaviour
             || ((collision.transform.parent) && collision.transform.parent.gameObject.tag.Equals("DestructibleObjects"))
         )
         {
+            Debug.Log($"{this.name} collide with {collision.gameObject.name}");
             HandleCollideWithGround(collision);
         }
 

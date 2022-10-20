@@ -23,4 +23,6 @@ public class PhysicComponentBase : MonoBehaviour
         if (_rb2D.bodyType == RigidbodyType2D.Static) return;
         this._rb2D.velocity = Vector2.zero;
     }
+
+    public Vector2 GetCurrentVelocity() => _rb2D.velocity;
 }

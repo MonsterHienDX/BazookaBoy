@@ -30,6 +30,7 @@ public class BulletManager : MonoBehaviour
         }
 
         BulletBaseD2D bulletNew = Instantiate<BulletBaseD2D>(bulletPrefab, this.transform);
+        bulletNew.name = $"Bullet {bulletBaseList.Count}";
         bulletNew.Init();
         bulletBaseList.Add(bulletNew);
         return bulletNew;

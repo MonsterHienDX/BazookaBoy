@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoundStone : PlatformBase
 {
     [SerializeField] protected float _radius = 1f;
+    [SerializeField] private Collider2D _collider2D;
 
     public override void SetSize(Vector2 size)
     {
@@ -13,4 +14,10 @@ public class RoundStone : PlatformBase
     }
 
     public float GetSizeRound() => _radius;
+
+    public override void Enable(bool enable)
+    {
+        base.Enable(enable);
+        _collider2D.enabled = enable;
+    }
 }

@@ -101,6 +101,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 4554194296091543557}
   _rb2D: {fileID: 4554194296091543555}
   _radius: 1
+  _collider2D: {fileID: 4554194296091543552}
 --- !u!58 &4554194296091543552
 CircleCollider2D:
   m_ObjectHideFlags: 0

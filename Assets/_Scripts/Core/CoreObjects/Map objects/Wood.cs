@@ -6,7 +6,6 @@ using UnityEngine;
 public class Wood : DestructiblePlatform
 {
     [SerializeField] private Sprite _woodSprite;
-
     protected override void OnValidate()
     {
         base.OnValidate();

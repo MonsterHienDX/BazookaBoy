@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(HumanPhysicComponent))]
@@ -33,10 +34,10 @@ public class Human : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!GameManager.instance.isPlaying) return;
-        if (this._physicComponent._rb2D.velocity != Vector2.zero)
+        if (!GameManager.instance.isPlaying || this.isDie || !GameManager.instance.delayAfterLoadLevelDone) return;
+        if (this._physicComponent.GetCurrentVelocity() != Vector2.zero)
         {
-            CheckDeathByForce(_physicComponent._rb2D.velocity);
+            CheckDeathByForce(_physicComponent.GetCurrentVelocity());
         }
     }
 
@@ -60,17 +61,32 @@ public class Human : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        CheckDeathByForce(this._physicComponent._rb2D.velocity);
+        if (!GameManager.instance.delayAfterLoadLevelDone) return;
+
+        CheckDeathByForce(this._physicComponent.GetCurrentVelocity());
+
+        if (collision.gameObject.tag == "DestructibleObjects"
+            || ((collision.transform.parent) && collision.transform.parent.gameObject.tag.Equals("DestructibleObjects"))
+            )
+        {
+            CheckDieByMapObjects();
+        }
     }
 
     public void CheckDeathByForce(Vector2 force)
     {
-        // if (force.x > 0f || force.x < 0f || force.y > 0f || force.y < 0f)
-        // Debug.Log($"{this.name} receive force: " + force);
         if (!CanSufferForce(force))
         {
             Death();
         }
+    }
+
+    private void CheckDieByMapObjects()
+    {
+        if (Mathf.Abs(this._physicComponent.GetCurrentVelocity().x) > 0.4f
+            || Mathf.Abs(this._physicComponent.GetCurrentVelocity().y) > 0.4f
+        )
+            Death();
     }
 
     private bool CanSufferForce(Vector2 force)

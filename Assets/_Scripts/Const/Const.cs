@@ -5,4 +5,5 @@
     public const float PANEL_SLIDE_SPEED = 0.3f;
     public const int DELAY_SHOW_NO_THANKS = 2000;
     public const int FPS = 60;
+    public const int DELAY_AFTER_LOAD_LEVEL = 300;
 }

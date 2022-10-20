@@ -138,4 +138,10 @@ public class Player : Human
     }
 
     public void RefillBullet() => cachedMaxBullet = maxBullet;
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+        Debug.Log("Player collision with " + collision.gameObject.name + "velocity: " + _physicComponent.GetCurrentVelocity());
+    }
 }

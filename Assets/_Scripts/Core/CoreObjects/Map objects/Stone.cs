@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Stone : PlatformBase
 {
+    [SerializeField] protected Collider2D _collider2D;
+
+
     public override void Init(Vector3 pos)
     {
         base.Init(pos);
@@ -14,6 +17,7 @@ public class Stone : PlatformBase
     {
         base.Enable(enable);
         _rb2D.bodyType = (enable) ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
+        _collider2D.enabled = enable;
     }
 
     public override void Reset()
