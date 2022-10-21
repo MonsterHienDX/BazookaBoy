@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(HumanPhysicComponent))]
@@ -16,6 +17,7 @@ public class Human : MonoBehaviour
     protected Vector3 _startPos;
     protected Vector3 _startRot;
     private HumanState _humanState => _animationComponent.humanState;
+    private Vector3 cachedVector3;
 
     private void OnEnable()
     {
@@ -66,28 +68,18 @@ public class Human : MonoBehaviour
 
         CheckDeathByForce(this._physicComponent.GetCurrentVelocity());
 
-        if (collision.gameObject.tag == "DestructibleObjects"
-            || ((collision.transform.parent) && collision.transform.parent.gameObject.tag.Equals("DestructibleObjects"))
-            )
-        {
-            CheckDieByMapObjects();
-        }
+        Rigidbody2D rb2DOfCollision = collision.gameObject.GetComponent<Rigidbody2D>();
+        if (rb2DOfCollision)
+            CheckDeathByForce(rb2DOfCollision.velocity);
     }
 
     public void CheckDeathByForce(Vector2 force)
     {
         if (!CanSufferForce(force))
         {
+            Debug.Log($"{this.name} velocity: " + force);
             Death();
         }
-    }
-
-    private void CheckDieByMapObjects()
-    {
-        if (Mathf.Abs(this._physicComponent.GetCurrentVelocity().x) > forceCanSuffer
-            || Mathf.Abs(this._physicComponent.GetCurrentVelocity().y) > forceCanSuffer
-        )
-            Death();
     }
 
     private bool CanSufferForce(Vector2 force)
@@ -129,10 +121,14 @@ public class Human : MonoBehaviour
         this.isDie = false;
     }
 
-    public virtual void InitTransform(Vector3 pos)
+    public virtual void InitTransform(Vector3 pos, Vector3 groundCenterPos)
     {
-        this.transform.localPosition = pos;
-        this._startPos = pos;
+        cachedVector3.Set(pos.x + groundCenterPos.x, pos.y + groundCenterPos.y, pos.z + groundCenterPos.z);
+        this.transform.localPosition = cachedVector3;
+        this._startPos = cachedVector3;
         this._startRot = this.transform.localEulerAngles;
+
+        // this._physicComponent._rb2D.GetHashCode
+
     }
 }

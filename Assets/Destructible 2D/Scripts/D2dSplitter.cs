@@ -195,7 +195,9 @@ namespace Destructible2D
                             var piece = destructible.SplitNext(i == 0);
                             var rect = default(D2dRect);
                             if (piece.transform.GetInstanceID() != destructible.transform.GetInstanceID())
+                            {
                                 pieceDestructibleList.Add(piece);
+                            }
 
                             if (healThreshold >= 0 && island.Count >= healThreshold)
                             {

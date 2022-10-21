@@ -5061,12 +5061,12 @@ MonoBehaviour:
   StampPaint: 0
   StampShape: {fileID: 2800000, guid: 78f14cfc29d0b9a4f844464a64fbb1c1, type: 3}
   StampColor: {r: 1, g: 1, b: 1, a: 1}
-  StampSize: {x: 1.5, y: 1.5}
+  StampSize: {x: 2, y: 2}
   StampRandomDirection: 1
   Raycast: 1
-  RaycastRadius: 1.6
-  RaycastCount: 40
-  ForcePerRay: 12
+  RaycastRadius: 2.2
+  RaycastCount: 25
+  ForcePerRay: 1
   DamagePerRay: 1
 --- !u!114 &4382138673483868257
 MonoBehaviour:
@@ -5171,7 +5171,7 @@ Transform:
   m_GameObject: {fileID: 8851371923299261871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 295558614500208048}
   m_Father: {fileID: 8394942460971439439}

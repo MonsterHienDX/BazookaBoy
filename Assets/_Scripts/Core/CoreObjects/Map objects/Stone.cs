@@ -6,9 +6,9 @@ public class Stone : PlatformBase
 {
     [SerializeField] protected Collider2D _collider2D;
 
-    public override void Init(Vector3 pos)
+    public override void Init(Vector3 pos, Vector3 groundCenterPos)
     {
-        base.Init(pos);
+        base.Init(pos, groundCenterPos);
         this.name = "Stone";
     }
 

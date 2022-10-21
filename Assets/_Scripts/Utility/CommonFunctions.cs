@@ -76,9 +76,9 @@ public static class CommonFunctions
         return UnityEngine.Random.Range(min, max);
     }
 
-    public static float CalculateForceRateByDistanceToCenter(Vector2 center, Vector2 objectPos, float radius)
+    public static float CalculateForceRateByDistanceToCenter(Vector2 forceCenter, Vector2 objectPos, float radius)
     {
-        float distance = Vector2.Distance(center, objectPos);
+        float distance = Vector2.Distance(forceCenter, objectPos);
         return distance / radius;
     }
 }

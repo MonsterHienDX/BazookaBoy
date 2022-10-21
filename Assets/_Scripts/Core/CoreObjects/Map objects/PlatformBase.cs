@@ -51,13 +51,13 @@ public class PlatformBase : MonoBehaviour
 
     public virtual void SetSprite(Sprite sprite) => this._spriteRenderer.sprite = sprite;
 
-    public virtual void SetPosition(Vector3 pos) => this.transform.position = pos;
 
-    public virtual void Init(Vector3 pos)
+    public virtual void Init(Vector3 centerPos, Vector3 groundCenterPos)
     {
         this.tag = "DestructibleObjects";
-        this.transform.localPosition = pos;
-        this._startPos = pos;
+        cachedSizeVec3.Set(centerPos.x + groundCenterPos.x, centerPos.y + groundCenterPos.y, centerPos.z + groundCenterPos.z);
+        this.transform.localPosition = cachedSizeVec3;
+        this._startPos = cachedSizeVec3;
         this._startRot = this.transform.localEulerAngles;
         this._instanceIDInit = GetInstanceID();
     }

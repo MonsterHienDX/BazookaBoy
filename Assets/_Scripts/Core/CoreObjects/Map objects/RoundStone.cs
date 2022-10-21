@@ -11,12 +11,12 @@ public class RoundStone : PlatformBase
     {
         this._radius = size.x;
         this.transform.localScale = Vector3.one * _radius;
-        _collider2D.radius = (0.5f * _radius / 2);
+        // _collider2D.radius = (0.5f * _radius / 2);
     }
 
-    public override void Init(Vector3 pos)
+    public override void Init(Vector3 pos, Vector3 groundCenterPos)
     {
-        base.Init(pos);
+        base.Init(pos, groundCenterPos);
         this.name = "Round Stone";
     }
 

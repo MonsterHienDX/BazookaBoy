@@ -20,12 +20,19 @@ public struct Object3D
 public struct LevelInfo
 {
     public LevelType levelType;
-    public MapObjectInfo groundInfo;
+    public GroundInfo groundInfo;
     public MapObjectInfo[] stones;
     public MapObjectInfo[] roundStones;
     public MapObjectInfo[] woods;
     public EnemyInfo[] enemies;
     public Vector2 playerPos;
+}
+
+[System.Serializable]
+public struct GroundInfo
+{
+    public Vector2 centerPos;
+    public Sprite groundSpriteShape;
 }
 
 [System.Serializable]

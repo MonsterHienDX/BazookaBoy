@@ -62,10 +62,39 @@ namespace Destructible2D.Examples
                 D2dStamp.All(StampPaint, position, StampSize, stampAngle, StampShape, StampColor, Mask);
             }
 
-            if (Raycast == true && RaycastCount > 0)
+            //  ORIGIN
+            // if (Raycast == true && RaycastCount > 0)
+            // {
+            //     StartCoroutine(DelayForce());
+            // }
+
+            //  HIENDX 
+            PushForceAllObjectsInRange();
+        }
+
+        private void PushForceAllObjectsInRange()
+        {
+            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(this.transform.position, RaycastRadius);
+            Rigidbody2D cachedRb2D = null;
+            Vector2 cachedForceDir = Vector2.one;
+            float cachedForceMagnitude = 1f;
+
+            foreach (Collider2D collider2D in collider2Ds)
             {
-                StartCoroutine(DelayForce());
+                cachedRb2D = collider2D.GetComponent<Rigidbody2D>();
+                if (cachedRb2D)
+                {
+                    cachedForceDir = (cachedRb2D.transform.position - this.transform.position).normalized;
+                    cachedForceMagnitude = CalculateForceRateByDistanceToCenter(this.transform.position, cachedRb2D.transform.position, RaycastRadius);
+                    cachedRb2D.AddForce(cachedForceDir * this.ForcePerRay * cachedForceMagnitude, ForceMode2D.Impulse);
+                }
             }
+        }
+
+        public static float CalculateForceRateByDistanceToCenter(Vector2 forceCenter, Vector2 objectPos, float radius)
+        {
+            float distance = Vector2.Distance(forceCenter, objectPos);
+            return distance / radius;
         }
 
 #if UNITY_EDITOR
@@ -90,6 +119,8 @@ namespace Destructible2D.Examples
                     var angle = i * angleStep;
                     var direction = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle));
                     var hit = Physics2D.Raycast(transform.position, direction, RaycastRadius, Mask);
+
+                    //  START: ORIGIN
                     var collider = hit.collider;
 
                     // Make sure the raycast hit something, and that it wasn't a trigger
@@ -111,6 +142,7 @@ namespace Destructible2D.Examples
                             damage.Damage += DamagePerRay * strength;
                         }
                     }
+                    //  END: ORIGIN
                 }
             }
         }

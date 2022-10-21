@@ -9,6 +9,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private Transform enemyContainer;
     private List<Enemy> enemyList;
     private int enemyAmount;
+    private Vector3 groundCenterPos;
+    private Vector3 cachedVector3;
 
     private void OnEnable()
     {
@@ -30,8 +32,9 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    public void Init(EnemyInfo[] enemyInfos)
+    public void Init(EnemyInfo[] enemyInfos, Vector3 groundCenterPos)
     {
+        this.groundCenterPos = groundCenterPos;
         enemyAmount = enemyInfos.Length;
         SpawnEnemies(enemyInfos);
     }
@@ -51,7 +54,7 @@ public class EnemyManager : MonoBehaviour
             if (!enemy.isActive)
             {
                 enemy.Enable(true);
-                enemy.InitTransform(enemyInfo.pos);
+                enemy.InitTransform(enemyInfo.pos, groundCenterPos);
                 enemy.Init(enemyInfo.type);
                 enemy.Reset();
                 return;
@@ -61,7 +64,7 @@ public class EnemyManager : MonoBehaviour
         Enemy enemyNew = Instantiate<Enemy>(enemyPrefab, enemyContainer);
         enemyNew.name = $"Enemy {enemyList.Count}";
         enemyNew.Enable(true);
-        enemyNew.InitTransform(enemyInfo.pos);
+        enemyNew.InitTransform(enemyInfo.pos, groundCenterPos);
         enemyNew.Init(enemyInfo.type);
         this.enemyList.Add(enemyNew);
     }

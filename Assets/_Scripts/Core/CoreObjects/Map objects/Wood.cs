@@ -38,9 +38,9 @@ public class Wood : DestructiblePlatform
         _rb2D.bodyType = (enable) ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
     }
 
-    public override void Init(Vector3 pos)
+    public override void Init(Vector3 pos, Vector3 groundCenterPos)
     {
-        base.Init(pos);
+        base.Init(pos, groundCenterPos);
         this.name = "WoodLog";
     }
 

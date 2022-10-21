@@ -15,160 +15,24 @@ MonoBehaviour:
   <levelInfos>k__BackingField:
   - levelType: 0
     groundInfo:
-      centerPos: {x: 2, y: -4.2}
-      size: {x: 3, y: 1}
+      centerPos: {x: 0, y: -5.02}
+      groundSpriteShape: {fileID: 21300000, guid: a7427ef306c71534185c6ca9a8856ad1, type: 3}
     stones:
-    - centerPos: {x: 3.2, y: 0}
-      size: {x: 0.5, y: 3}
-    roundStones: []
-    woods:
-    - centerPos: {x: 1.2, y: 0}
-      size: {x: 0.5, y: 3}
-    - centerPos: {x: 2.47, y: 1.75}
-      size: {x: 3, y: 0.5}
-    - centerPos: {x: 3.47, y: 3.25}
-      size: {x: 0.5, y: 3}
-    enemies:
-    - type: 0
-      pos: {x: 0.35, y: -1.1}
-    - type: 0
-      pos: {x: 1.5, y: 2.1}
-    playerPos: {x: -3.4, y: -1.15}
-  - levelType: 0
-    groundInfo:
-      centerPos: {x: 2, y: -8.8}
-      size: {x: 3, y: 1}
-    stones:
-    - centerPos: {x: 2.15, y: -5.25}
-      size: {x: 0.5, y: 2}
-    - centerPos: {x: 4.15, y: -5.25}
-      size: {x: 0.5, y: 2}
-    - centerPos: {x: 2.15, y: -2.75}
-      size: {x: 0.5, y: 2}
-    - centerPos: {x: 4.15, y: -2.75}
-      size: {x: 0.5, y: 2}
-    roundStones: []
-    woods:
-    - centerPos: {x: 3, y: -1.25}
-      size: {x: 3, y: 0.5}
-    - centerPos: {x: 3, y: -4}
-      size: {x: 3, y: 0.5}
-    enemies:
-    - type: 0
-      pos: {x: 5.38, y: -5.65}
-    - type: 0
-      pos: {x: 3.09, y: -3.15}
-    playerPos: {x: -4.31, y: -5.71}
-  - levelType: 0
-    groundInfo:
-      centerPos: {x: 3.5, y: -7.23}
-      size: {x: 4, y: 1}
-    stones:
-    - centerPos: {x: 0, y: 0.62}
+    - centerPos: {x: 3.46, y: 7.92}
       size: {x: 0.5, y: 0.5}
-    - centerPos: {x: 1.75, y: 3.62}
-      size: {x: 0.5, y: 0.5}
-    - centerPos: {x: -1.5, y: 3.62}
-      size: {x: 0.5, y: 0.5}
-    - centerPos: {x: 0.5, y: 3.62}
-      size: {x: 0.5, y: 0.5}
-    - centerPos: {x: 1, y: 4.56}
-      size: {x: 1.5, y: 1.5}
-    roundStones: []
-    woods:
-    - centerPos: {x: 0, y: -2.14}
-      size: {x: 2, y: 5}
-    - centerPos: {x: -0.1, y: 2.15}
-      size: {x: 5.5, y: 2.5}
-    - centerPos: {x: 4.78, y: -4.15}
-      size: {x: 5.5, y: 1}
-    - centerPos: {x: 11.030001, y: -2.65}
-      size: {x: 1, y: 4}
-    - centerPos: {x: 6.78, y: -3.15}
-      size: {x: 5.5, y: 1}
-    - centerPos: {x: 6.78, y: -2.15}
-      size: {x: 5.5, y: 1}
-    - centerPos: {x: 7.78, y: -1.1500001}
-      size: {x: 5.5, y: 1}
-    - centerPos: {x: 8.780001, y: -0.1500001}
-      size: {x: 5.5, y: 1}
-    enemies:
-    - type: 0
-      pos: {x: 5.63, y: -0.110000014}
-    - type: 0
-      pos: {x: -2.12, y: 3.8899999}
-    - type: 0
-      pos: {x: 4.38, y: -1.11}
-    playerPos: {x: -6.06, y: -4.11}
-  - levelType: 0
-    groundInfo:
-      centerPos: {x: 0, y: -7.81}
-      size: {x: 4, y: 1}
-    stones:
-    - centerPos: {x: 3.75, y: 6}
-      size: {x: 0.5, y: 0.5}
-    - centerPos: {x: 2.25, y: 6}
+    - centerPos: {x: 2.42, y: 7.91}
       size: {x: 0.5, y: 0.5}
     roundStones:
-    - centerPos: {x: 3.04, y: 7.13}
-      size: {x: 2, y: 1}
-    woods:
-    - centerPos: {x: -4.74, y: -3.27}
-      size: {x: 3, y: 4}
-    - centerPos: {x: 2.0100002, y: -0.77}
-      size: {x: 2, y: 9}
-    - centerPos: {x: 2.0100002, y: 4.73}
-      size: {x: 7, y: 2}
+    - centerPos: {x: 2.98, y: 8.81}
+      size: {x: 1.5, y: 1}
+    woods: []
     enemies:
     - type: 0
-      pos: {x: -1.16, y: 6.26}
+      pos: {x: 0.12, y: 8.176}
     - type: 0
-      pos: {x: 5.33, y: -4.72}
+      pos: {x: 0.87, y: 8.176}
     - type: 0
-      pos: {x: 5.09, y: 6.26}
+      pos: {x: 4.12, y: 8.176}
     - type: 0
-      pos: {x: -0.15999997, y: 6.26}
-    playerPos: {x: -5.18, y: -0.81}
-  - levelType: 0
-    groundInfo:
-      centerPos: {x: 1.5, y: -9.21}
-      size: {x: 4, y: 1}
-    stones: []
-    roundStones: []
-    woods:
-    - centerPos: {x: -1.9000001, y: -5.68}
-      size: {x: 10, y: 2}
-    - centerPos: {x: 7.6000004, y: -5.68}
-      size: {x: 6, y: 2}
-    - centerPos: {x: -0.6499996, y: -3.1799998}
-      size: {x: 3, y: 3}
-    - centerPos: {x: -0.6499996, y: -0.9299998}
-      size: {x: 0.5, y: 1.5}
-    - centerPos: {x: -0.6499996, y: 0.07000017}
-      size: {x: 2, y: 0.5}
-    - centerPos: {x: 1.27, y: -4.21}
-      size: {x: 1, y: 1}
-    - centerPos: {x: 3.77, y: -4.46}
-      size: {x: 3, y: 0.5}
-    - centerPos: {x: 1.52, y: -3.21}
-      size: {x: 0.5, y: 1}
-    - centerPos: {x: 5.77, y: -4.21}
-      size: {x: 1, y: 1}
-    - centerPos: {x: 5.52, y: -3.21}
-      size: {x: 0.5, y: 1}
-    - centerPos: {x: 3.6000004, y: -2.4299998}
-      size: {x: 5, y: 0.5}
-    - centerPos: {x: 3.96, y: -1.4299998}
-      size: {x: 0.5, y: 1.5}
-    - centerPos: {x: 4.71, y: -0.42999983}
-      size: {x: 2, y: 0.5}
-    - centerPos: {x: 5.44, y: -1.4299998}
-      size: {x: 0.5, y: 1.5}
-    enemies:
-    - type: 0
-      pos: {x: -0.6199999, y: 0.8299999}
-    - type: 0
-      pos: {x: 3.38, y: -3.67}
-    - type: 0
-      pos: {x: 4.63, y: -1.6700001}
-    playerPos: {x: -5.18, y: -4.14}
+      pos: {x: 5.47, y: 0.78}
+    playerPos: {x: -6.48, y: -2.09}

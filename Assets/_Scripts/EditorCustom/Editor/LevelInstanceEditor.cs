@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-
 #if UNITY_EDITOR
 [CustomEditor(typeof(LevelInstance))]
 public class LevelInstanceEditor : Editor
@@ -57,7 +56,6 @@ public class LevelInstanceEditor : Editor
         levelInfo.woods = levelInstance.woodInfoList.ToArray();
 
         levelInstance.AddLevelData(levelInfo);
-
 
         EditorUtility.SetDirty(levelInstance.dataLevel);
         AssetDatabase.SaveAssets();

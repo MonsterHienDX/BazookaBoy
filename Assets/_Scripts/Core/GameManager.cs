@@ -62,12 +62,13 @@ public class GameManager : SingletonMonobehaviour<GameManager>
             (UserData.LevelNumber > levelAmount) ? UnityEngine.Random.Range(0, levelAmount) : UserData.LevelNumber - 1;
         LevelInfo levelInfo = dataLevel.levelInfos[indexLevelNumberToLoad];
 
-        _mapObjectManager.SpawnGround(levelInfo.groundInfo);
-        _mapObjectManager.SpawnStones(levelInfo.stones);
-        _mapObjectManager.SpawnWoods(levelInfo.woods);
-        _mapObjectManager.SpawnRoundStones(levelInfo.roundStones);
-        _player.InitTransform(levelInfo.playerPos);
-        _enemyManager.Init(levelInfo.enemies);
+        // _mapObjectManager.SpawnGround(levelInfo.groundInfo);
+        // _mapObjectManager.SpawnStones(levelInfo.stones);
+        // _mapObjectManager.SpawnWoods(levelInfo.woods);
+        // _mapObjectManager.SpawnRoundStones(levelInfo.roundStones);
+        _mapObjectManager.LoadObjectsInMap(levelInfo);
+        _player.InitTransform(levelInfo.playerPos, Vector3.zero);
+        _enemyManager.Init(levelInfo.enemies, levelInfo.groundInfo.centerPos);
 
         this.isPlaying = true;
 
