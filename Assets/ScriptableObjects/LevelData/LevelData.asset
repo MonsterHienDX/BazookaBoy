@@ -15,24 +15,51 @@ MonoBehaviour:
   <levelInfos>k__BackingField:
   - levelType: 0
     groundInfo:
-      centerPos: {x: 0, y: -5.02}
+      centerPos: {x: 0, y: -5.79}
       groundSpriteShape: {fileID: 21300000, guid: 285fdb5da4389124d9c0a3b934c5ef0e, type: 3}
     stones:
-    - centerPos: {x: 3.46, y: 7.92}
+    - centerPos: {x: 3.3, y: 1.89}
       size: {x: 0.5, y: 0.5}
-    - centerPos: {x: 2.42, y: 7.91}
+    - centerPos: {x: 2.05, y: 1.89}
       size: {x: 0.5, y: 0.5}
     roundStones:
-    - centerPos: {x: 2.98, y: 8.81}
+    - centerPos: {x: 2.71, y: 2.8}
       size: {x: 1.5, y: 1}
     woods: []
     enemies:
     - type: 0
-      pos: {x: 0.12, y: 8.176}
+      pos: {x: 0.13000011, y: 2.1399999}
     - type: 0
-      pos: {x: 0.87, y: 8.176}
+      pos: {x: 4.77, y: -5.13}
     - type: 0
-      pos: {x: 4.12, y: 8.176}
+      pos: {x: 4.13, y: 2.1399999}
     - type: 0
-      pos: {x: 5.47, y: 0.78}
-    playerPos: {x: -6.48, y: -2.09}
+      pos: {x: 1.1300001, y: 2.1399999}
+    playerPos: {x: -6.76, y: -3.14}
+  - levelType: 0
+    groundInfo:
+      centerPos: {x: 0, y: -4.65}
+      groundSpriteShape: {fileID: 21300000, guid: 8c524322d8921034cba063211cc3c7aa, type: 3}
+    stones:
+    - centerPos: {x: 0.16, y: -3.82}
+      size: {x: 0.5, y: 0.5}
+    - centerPos: {x: 1.5, y: -0.81999993}
+      size: {x: 0.5, y: 0.5}
+    - centerPos: {x: -0.89, y: -0.81999993}
+      size: {x: 0.5, y: 0.5}
+    - centerPos: {x: 0.3, y: -0.81999993}
+      size: {x: 0.5, y: 0.5}
+    roundStones:
+    - centerPos: {x: 0.89, y: 0.12}
+      size: {x: 1.5, y: 1}
+    woods:
+    - centerPos: {x: 0.2, y: -2.35}
+      size: {x: 5, y: 2.5}
+    enemies:
+    - type: 0
+      pos: {x: 4.84, y: -4.02}
+    - type: 0
+      pos: {x: -1.95, y: -0.61}
+    - type: 0
+      pos: {x: 3.68, y: -4.77}
+    playerPos: {x: -4.29, y: -7.47}

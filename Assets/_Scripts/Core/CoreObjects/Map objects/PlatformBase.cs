@@ -41,6 +41,12 @@ public class PlatformBase : MonoBehaviour
         this.transform.localScale = cachedSizeVec3;
     }
 
+    public void SetPosition(Vector3 centerPos)
+    {
+        this.transform.localPosition = centerPos;
+        this._startPos = centerPos;
+    }
+
     public Vector2 GetSizeSquare() => size;
 
     public virtual void Enable(bool enable)
@@ -56,8 +62,10 @@ public class PlatformBase : MonoBehaviour
     {
         this.tag = "DestructibleObjects";
         cachedSizeVec3.Set(centerPos.x + groundCenterPos.x, centerPos.y + groundCenterPos.y, centerPos.z + groundCenterPos.z);
-        this.transform.localPosition = cachedSizeVec3;
-        this._startPos = cachedSizeVec3;
+        // this.transform.localPosition = cachedSizeVec3;
+        this.SetPosition(centerPos);
+        // this.transform.localPosition = centerPos;
+        // this._startPos = cachedSizeVec3;
         this._startRot = this.transform.localEulerAngles;
         this._instanceIDInit = GetInstanceID();
     }

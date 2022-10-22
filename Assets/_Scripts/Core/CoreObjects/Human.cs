@@ -124,8 +124,10 @@ public class Human : MonoBehaviour
     public virtual void InitTransform(Vector3 pos, Vector3 groundCenterPos)
     {
         cachedVector3.Set(pos.x + groundCenterPos.x, pos.y + groundCenterPos.y, pos.z + groundCenterPos.z);
-        this.transform.localPosition = cachedVector3;
-        this._startPos = cachedVector3;
+        // this.transform.localPosition = cachedVector3;
+        this.transform.localPosition = pos;
+        // this._startPos = cachedVector3;
+        this._startPos = pos;
         this._startRot = this.transform.localEulerAngles;
 
         // this._physicComponent._rb2D.GetHashCode

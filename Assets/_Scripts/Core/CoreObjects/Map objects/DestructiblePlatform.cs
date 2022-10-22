@@ -24,8 +24,8 @@ public class DestructiblePlatform : PlatformBase
     public override void Reset()
     {
         base.Reset();
-        _destructibleSprite.Clear();
-        _destructibleSprite.Rebuild();
-        _destructibleSprite.Trim();
+        _destructibleSprite?.Clear();
+        _destructibleSprite?.Rebuild();
+        _destructibleSprite?.Trim();
     }
 }

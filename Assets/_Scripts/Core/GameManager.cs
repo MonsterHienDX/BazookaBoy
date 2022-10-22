@@ -53,8 +53,9 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     public void LoadLevel()
     {
-        //  TODO: Clear level data
+        Debug.Log("Load level");
 
+        //  TODO: Clear level data
         ResetDataLevel();
 
         //  TODO: Load new level

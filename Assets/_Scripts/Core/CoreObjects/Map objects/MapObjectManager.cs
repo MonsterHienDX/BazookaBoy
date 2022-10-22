@@ -73,26 +73,6 @@ public class MapObjectManager : MonoBehaviour
         }
     }
 
-
-    private Ground GetGroundWithOutPool(Vector3 pos, Sprite sprite)
-    {
-        if (groundList.Count > 0)
-        {
-            foreach (Ground ground in groundList) Destroy(ground.gameObject);
-        }
-        groundList.Clear();
-
-        Ground groundNew = Instantiate<Ground>(groundPrefab, this.groundContainer);
-        groundNew.Init(pos, Vector3.zero);
-        groundNew.Enable(true);
-
-        groundNew.SetShape(sprite);
-
-        groundList.Add(groundNew);
-
-        return groundNew;
-    }
-
     private Ground GetGround(Vector3 pos, Sprite sprite)
     {
         foreach (Ground ground in groundList)
@@ -109,7 +89,6 @@ public class MapObjectManager : MonoBehaviour
         Ground groundNew = Instantiate<Ground>(groundPrefab, this.groundContainer);
         groundNew.Init(pos, Vector3.zero);
         groundNew.Enable(true);
-
         groundNew.SetShape(sprite);
 
         groundList.Add(groundNew);
@@ -133,6 +112,7 @@ public class MapObjectManager : MonoBehaviour
             if (!wood.isActive)
             {
                 wood.Enable(true);
+                wood.SetPosition(pos);
                 wood.Reset();
                 return wood;
             }
@@ -152,6 +132,7 @@ public class MapObjectManager : MonoBehaviour
             if (!stone.isActive)
             {
                 stone.Enable(true);
+                stone.SetPosition(pos);
                 stone.Reset();
                 return stone;
             }
@@ -172,6 +153,7 @@ public class MapObjectManager : MonoBehaviour
             if (!roundStone.isActive)
             {
                 roundStone.Enable(true);
+                roundStone.SetPosition(pos);
                 roundStone.Reset();
                 return roundStone;
             }

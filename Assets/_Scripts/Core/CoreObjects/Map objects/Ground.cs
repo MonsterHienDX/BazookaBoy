@@ -32,6 +32,7 @@ public class Ground : DestructiblePlatform
 
     public void SetShape(Sprite spriteShape)
     {
+        Debug.Log($"{this.name}._spriteRenderer.enabled: " + (this._spriteRenderer.enabled));
         this.SetSprite(spriteShape);
         this._destructibleSprite.Shape = spriteShape;
 

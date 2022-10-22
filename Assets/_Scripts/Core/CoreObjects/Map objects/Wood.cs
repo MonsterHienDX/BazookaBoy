@@ -26,12 +26,6 @@ public class Wood : DestructiblePlatform
         // OptimizeWhenInit();
     }
 
-    public void OptimizeWhenInit()
-    {
-        this._destructibleSprite.Optimize();
-        this._destructibleSprite.Optimize();
-    }
-
     public override void Enable(bool enable)
     {
         base.Enable(enable);
@@ -43,5 +37,4 @@ public class Wood : DestructiblePlatform
         base.Init(pos, groundCenterPos);
         this.name = "WoodLog";
     }
-
 }
