@@ -74,7 +74,7 @@ namespace Destructible2D.Examples
 
         private void PushForceAllObjectsInRange()
         {
-            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(this.transform.position, RaycastRadius);
+            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(this.transform.position, RaycastRadius / 2);
             Rigidbody2D cachedRb2D = null;
             Vector2 cachedForceDir = Vector2.one;
             float cachedForceMagnitude = 1f;
