@@ -41,7 +41,8 @@ public class MapObjectManager : MonoBehaviour
 
     public void SpawnGround(GroundInfo groundInfo)
     {
-        Ground ground = GetGround(groundInfo.centerPos, groundInfo.groundSpriteShape);
+        GetGround(groundInfo.centerPos, groundInfo.groundSpriteShape);
+        // GetGroundWithOutPool(groundInfo.centerPos, groundInfo.groundSpriteShape);
     }
 
     private void SpawnWood(MapObjectInfo woodInfo)
@@ -70,6 +71,26 @@ public class MapObjectManager : MonoBehaviour
         {
             SpawnStone(stoneInfo);
         }
+    }
+
+
+    private Ground GetGroundWithOutPool(Vector3 pos, Sprite sprite)
+    {
+        if (groundList.Count > 0)
+        {
+            foreach (Ground ground in groundList) Destroy(ground.gameObject);
+        }
+        groundList.Clear();
+
+        Ground groundNew = Instantiate<Ground>(groundPrefab, this.groundContainer);
+        groundNew.Init(pos, Vector3.zero);
+        groundNew.Enable(true);
+
+        groundNew.SetShape(sprite);
+
+        groundList.Add(groundNew);
+
+        return groundNew;
     }
 
     private Ground GetGround(Vector3 pos, Sprite sprite)

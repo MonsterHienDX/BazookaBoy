@@ -16,7 +16,7 @@ MonoBehaviour:
   - levelType: 0
     groundInfo:
       centerPos: {x: 0, y: -5.02}
-      groundSpriteShape: {fileID: 21300000, guid: a7427ef306c71534185c6ca9a8856ad1, type: 3}
+      groundSpriteShape: {fileID: 21300000, guid: 285fdb5da4389124d9c0a3b934c5ef0e, type: 3}
     stones:
     - centerPos: {x: 3.46, y: 7.92}
       size: {x: 0.5, y: 0.5}

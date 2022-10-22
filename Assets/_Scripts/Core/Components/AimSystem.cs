@@ -41,7 +41,7 @@ public class AimSystem : MonoBehaviour
 
     public void ShowTrajectoryLine(Vector3 muzzlePos, Vector2 force)
     {
-        lineRenderer.positionCount = 1500;
+        lineRenderer.positionCount = 750;
         lineRenderer.SetPositions(GetLinePos(muzzlePos, force));
     }
 
@@ -49,7 +49,7 @@ public class AimSystem : MonoBehaviour
     {
         lineRenderer.positionCount = 0;
     }
-    private Vector3[] GetLinePos(Vector2 pos, Vector2 velocity, int steps = 1500)
+    private Vector3[] GetLinePos(Vector2 pos, Vector2 velocity, int steps = 750)
     {
         Rigidbody2D rb2D = ghostBullet.GetComponent<Rigidbody2D>();
 
