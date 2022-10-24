@@ -188,7 +188,7 @@ namespace Destructible2D
                         baseField.Transform(baseRect, alphaWidth, alphaHeight, alphaData);
 
                         destructible.SplitBegin();
-
+                        Rigidbody2D _cachedRb2D;
                         for (var i = islands.Count - 1; i >= 0; i--)
                         {
                             var island = islands[i];
@@ -197,6 +197,13 @@ namespace Destructible2D
                             if (piece.transform.GetInstanceID() != destructible.transform.GetInstanceID())
                             {
                                 pieceDestructibleList.Add(piece);
+                                _cachedRb2D = null;
+                                _cachedRb2D = piece.GetComponent<Rigidbody2D>();
+                                if (_cachedRb2D)
+                                {
+                                    _cachedRb2D.bodyType = RigidbodyType2D.Dynamic;
+                                    _cachedRb2D.useAutoMass = true;
+                                }
                             }
 
                             if (healThreshold >= 0 && island.Count >= healThreshold)

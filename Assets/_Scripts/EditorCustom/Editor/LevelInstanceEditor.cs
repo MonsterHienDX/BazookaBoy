@@ -55,6 +55,8 @@ public class LevelInstanceEditor : Editor
 
         levelInfo.woods = levelInstance.woodInfoList.ToArray();
 
+        levelInfo.bombMapPositions = levelInstance.bombPosList.ToArray();
+
         levelInstance.AddLevelData(levelInfo);
 
         EditorUtility.SetDirty(levelInstance.dataLevel);

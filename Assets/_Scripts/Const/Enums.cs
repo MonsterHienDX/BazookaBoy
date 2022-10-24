@@ -15,11 +15,6 @@ public enum LevelType
     Bonus = 2,
 }
 
-public enum GameObjectTag
-{
-
-}
-
 public enum HumanState
 {
     Idle,

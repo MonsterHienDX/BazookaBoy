@@ -35,6 +35,7 @@ MonoBehaviour:
       pos: {x: 4.13, y: 2.1399999}
     - type: 0
       pos: {x: 1.1300001, y: 2.1399999}
+    bombMapPositions: []
     playerPos: {x: -6.76, y: -3.14}
   - levelType: 0
     groundInfo:
@@ -62,6 +63,7 @@ MonoBehaviour:
       pos: {x: -1.95, y: -0.61}
     - type: 0
       pos: {x: 3.68, y: -4.77}
+    bombMapPositions: []
     playerPos: {x: -4.29, y: -7.47}
   - levelType: 0
     groundInfo:
@@ -91,29 +93,54 @@ MonoBehaviour:
       pos: {x: 3.72, y: -2.65}
     - type: 0
       pos: {x: 2.47, y: -2.65}
+    bombMapPositions: []
     playerPos: {x: -4.29, y: -5.16}
   - levelType: 0
     groundInfo:
-      centerPos: {x: 0, y: 0}
+      centerPos: {x: 0, y: -4.25}
       groundSpriteShape: {fileID: 21300000, guid: 5a88a58bb6d52ee4ca8ee2ebf5d61f52, type: 3}
     stones:
-    - centerPos: {x: -1.735, y: 0.26}
-      size: {x: 0.75, y: 4}
-    - centerPos: {x: 2.76, y: 0.26000002}
-      size: {x: 0.75, y: 4}
-    - centerPos: {x: 0.91, y: -2.93}
+    - centerPos: {x: -0.48, y: -5.16}
+      size: {x: 0.75, y: 4.1}
+    - centerPos: {x: 2.76, y: -4.49}
+      size: {x: 0.75, y: 3}
+    - centerPos: {x: 0.91, y: -7.1800003}
       size: {x: 1, y: 1}
     roundStones: []
     woods:
-    - centerPos: {x: 0.48, y: 2.79}
-      size: {x: 9, y: 1}
-    - centerPos: {x: 0.98, y: -2.1799998}
+    - centerPos: {x: 0.48, y: -2.67}
+      size: {x: 9, y: 0.8}
+    - centerPos: {x: 0.98, y: -6.43}
       size: {x: 2, y: 0.5}
     enemies:
     - type: 0
-      pos: {x: 0.3800001, y: 3.79}
+      pos: {x: 0.3800001, y: -1.79}
     - type: 0
-      pos: {x: 4.46, y: 0.7}
+      pos: {x: 4.46, y: -3.55}
     - type: 0
-      pos: {x: -3.37, y: 0.53999996}
-    playerPos: {x: 0.87, y: -1.45}
+      pos: {x: -3.37, y: -3.71}
+    bombMapPositions: []
+    playerPos: {x: 0.87, y: -5.61}
+  - levelType: 0
+    groundInfo:
+      centerPos: {x: 0, y: -4.3}
+      groundSpriteShape: {fileID: 21300000, guid: 8c524322d8921034cba063211cc3c7aa, type: 3}
+    stones:
+    - centerPos: {x: 0.6, y: -2.19}
+      size: {x: 0.5, y: 3}
+    roundStones:
+    - centerPos: {x: 0.6, y: -0.16}
+      size: {x: 1, y: 1}
+    woods:
+    - centerPos: {x: 3.83, y: -3.86}
+      size: {x: 3, y: 0.5}
+    - centerPos: {x: 2.58, y: -5.06}
+      size: {x: 0.5, y: 2}
+    enemies:
+    - type: 0
+      pos: {x: 3.38, y: -3.1}
+    - type: 0
+      pos: {x: 1.93, y: -6.3}
+    bombMapPositions:
+    - {x: -0.22, y: -3.21}
+    playerPos: {x: -5.38, y: -7.204}

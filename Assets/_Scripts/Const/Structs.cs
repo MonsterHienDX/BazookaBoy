@@ -25,6 +25,7 @@ public struct LevelInfo
     public MapObjectInfo[] roundStones;
     public MapObjectInfo[] woods;
     public EnemyInfo[] enemies;
+    public Vector2[] bombMapPositions;
     public Vector2 playerPos;
 }
 
@@ -47,4 +48,11 @@ public struct EnemyInfo
 {
     public EnemyType type;
     public Vector2 pos;
+}
+
+public struct GameObjectTag
+{
+    public const string DestructibleObjects = "DestructibleObjects";
+    public const string Bomb = "Bomb";
+    public const string Human = "Human";
 }

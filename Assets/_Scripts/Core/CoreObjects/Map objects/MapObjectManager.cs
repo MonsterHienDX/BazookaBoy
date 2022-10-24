@@ -8,16 +8,19 @@ public class MapObjectManager : MonoBehaviour
     private List<Wood> woodList;
     private List<Stone> stoneList;
     private List<RoundStone> roundStoneList;
+    private List<BombMap> bombMapList;
     [SerializeField] private Sprite _surfaceSprite;
     [SerializeField] private Sprite _solidSoilSprite;
     [SerializeField] private Ground groundPrefab;
     [SerializeField] private Wood woodPrefab;
     [SerializeField] private Stone stonePrefab;
     [SerializeField] private RoundStone roundStonePrefab;
+    [SerializeField] private BombMap bombMapPrefab;
     [SerializeField] private Transform groundContainer;
     [SerializeField] private Transform woodContainer;
     [SerializeField] private Transform stoneContainer;
     [SerializeField] private Transform roundStoneContainer;
+    [SerializeField] private Transform bombMapContainer;
     private Vector3 groundCenterPos;
 
     private void Awake()
@@ -26,6 +29,7 @@ public class MapObjectManager : MonoBehaviour
         woodList = new List<Wood>();
         stoneList = new List<Stone>();
         roundStoneList = new List<RoundStone>();
+        bombMapList = new List<BombMap>();
     }
 
     public void LoadObjectsInMap(LevelInfo levelInfo)
@@ -37,6 +41,7 @@ public class MapObjectManager : MonoBehaviour
         SpawnWoods(levelInfo.woods);
         SpawnStones(levelInfo.stones);
         SpawnRoundStones(levelInfo.roundStones);
+        SpawnBombMaps(levelInfo.bombMapPositions);
     }
 
     public void SpawnGround(GroundInfo groundInfo)
@@ -178,6 +183,40 @@ public class MapObjectManager : MonoBehaviour
         foreach (MapObjectInfo roundStoneInfo in roundStoneInfos)
         {
             SpawnRoundStone(roundStoneInfo);
+        }
+    }
+
+    private BombMap GetBombMap(Vector3 pos)
+    {
+        foreach (BombMap bombMap in bombMapList)
+        {
+            if (!bombMap.isActive)
+            {
+                bombMap.Enable(true);
+                bombMap.SetPosition(pos);
+                bombMap.Reset();
+                return bombMap;
+            }
+        }
+
+        BombMap bombMapNew = Instantiate<BombMap>(bombMapPrefab, this.bombMapContainer);
+        bombMapNew.Enable(true);
+        bombMapNew.Init(pos);
+        bombMapList.Add(bombMapNew);
+
+        return bombMapNew;
+    }
+
+    private void SpawnBombMap(Vector3 pos)
+    {
+        BombMap bombMap = GetBombMap(pos);
+    }
+
+    private void SpawnBombMaps(Vector2[] positions)
+    {
+        foreach (Vector2 pos in positions)
+        {
+            SpawnBombMap(pos);
         }
     }
 }

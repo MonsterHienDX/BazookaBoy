@@ -14,11 +14,13 @@ public class LevelInstance : MonoBehaviour
     public List<MapObjectInfo> stoneInfoList;
     public List<MapObjectInfo> roundStoneInfoList;
     public List<EnemyInfo> enemyInfoList;
+    public List<Vector2> bombPosList;
     [SerializeField] private Ground groundPrefab;
     [SerializeField] private Wood woodPrefab;
     [SerializeField] private Stone stonePrefab;
     [SerializeField] private RoundStone roundStonePrefab;
     [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private BombMap bombMapPrefab;
     [SerializeField] private Sprite _surfaceSprite;
     [SerializeField] private Sprite _solidSoilSprite;
     [SerializeField] private Transform groundContainer;
@@ -26,6 +28,7 @@ public class LevelInstance : MonoBehaviour
     [SerializeField] private Transform stoneContainer;
     [SerializeField] private Transform roundStoneContainer;
     [SerializeField] private Transform enemyContainer;
+    [SerializeField] private Transform bombContainer;
 
     [SerializeField] private Player player;
 
@@ -41,6 +44,7 @@ public class LevelInstance : MonoBehaviour
         var cacheStone = Instantiate<Stone>(stonePrefab, stoneContainer);
         var cacheRoundStone = Instantiate<RoundStone>(roundStonePrefab, roundStoneContainer);
         var cacheEnemy = Instantiate<Enemy>(enemyPrefab, enemyContainer);
+        var cacheBombMap = Instantiate<BombMap>(bombMapPrefab, bombContainer);
     }
 
     public void AddLevelData(LevelInfo levelInfo)
@@ -55,11 +59,13 @@ public class LevelInstance : MonoBehaviour
         while (stoneContainer.childCount > 0) DestroyImmediate(stoneContainer.GetChild(0).gameObject);
         while (enemyContainer.childCount > 0) DestroyImmediate(enemyContainer.GetChild(0).gameObject);
         while (roundStoneContainer.childCount > 0) DestroyImmediate(roundStoneContainer.GetChild(0).gameObject);
+        while (bombContainer.childCount > 0) DestroyImmediate(bombContainer.GetChild(0).gameObject);
 
         woodInfoList.Clear();
         stoneInfoList.Clear();
         enemyInfoList.Clear();
         roundStoneInfoList.Clear();
+        bombPosList.Clear();
 
         groundContainer.transform.position = Vector3.zero;
     }
@@ -72,6 +78,7 @@ public class LevelInstance : MonoBehaviour
         stoneInfoList.Clear();
         enemyInfoList.Clear();
         roundStoneInfoList.Clear();
+        bombPosList.Clear();
 
         this.groundInfo.groundSpriteShape = ground.spriteShape;
         this.groundInfo.centerPos = ground.transform.position;
@@ -104,6 +111,13 @@ public class LevelInstance : MonoBehaviour
             cacheMapObjectInfo.centerPos = roundStone.transform.localPosition;
             cacheMapObjectInfo.size = roundStone.GetSizeSquare();
             if (!roundStoneInfoList.Contains(cacheMapObjectInfo)) roundStoneInfoList.Add(cacheMapObjectInfo);
+        }
+
+        Vector3 cachedVector3 = Vector3.zero;
+        foreach (BombMap bomb in bombContainer.GetComponentsInChildren<BombMap>())
+        {
+            cachedVector3 = bomb.transform.localPosition;
+            bombPosList.Add(cachedVector3);
         }
     }
 }

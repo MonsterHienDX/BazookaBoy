@@ -10,7 +10,6 @@ public class Ground : DestructiblePlatform
     protected override void Awake()
     {
         base.Awake();
-        this._rb2D.bodyType = RigidbodyType2D.Dynamic;
     }
 
     protected override void OnValidate()
@@ -22,7 +21,7 @@ public class Ground : DestructiblePlatform
     public override void Init(Vector3 pos, Vector3 groundCenterPos)
     {
         this.name = "Ground";
-        this.tag = "DestructibleObjects";
+        this.tag = GameObjectTag.DestructibleObjects;
         this.transform.localPosition = pos;
         this._startPos = pos;
         this._startRot = this.transform.localEulerAngles;
@@ -32,7 +31,6 @@ public class Ground : DestructiblePlatform
 
     public void SetShape(Sprite spriteShape)
     {
-        Debug.Log($"{this.name}._spriteRenderer.enabled: " + (this._spriteRenderer.enabled));
         this.SetSprite(spriteShape);
         this._destructibleSprite.Shape = spriteShape;
 

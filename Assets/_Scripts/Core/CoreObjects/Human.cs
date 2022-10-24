@@ -66,11 +66,15 @@ public class Human : MonoBehaviour
     {
         if (!GameManager.instance.delayAfterLoadLevelDone) return;
 
-        CheckDeathByForce(this._physicComponent.GetCurrentVelocity());
+        Debug.Log($"{collision.gameObject.name} velocity: {collision.relativeVelocity}");
+        CheckDeathByForce(collision.relativeVelocity);
 
-        Rigidbody2D rb2DOfCollision = collision.gameObject.GetComponent<Rigidbody2D>();
-        if (rb2DOfCollision)
-            CheckDeathByForce(rb2DOfCollision.velocity);
+        // Rigidbody2D rb2DOfCollision = collision.gameObject.GetComponent<Rigidbody2D>();
+        // if (rb2DOfCollision)
+        // {
+        //     Debug.Log($"{rb2DOfCollision.gameObject.name} collide {this.name} with velocity: {rb2DOfCollision.velocity}");
+        //     CheckDeathByForce(rb2DOfCollision.velocity);
+        // }
     }
 
     public void CheckDeathByForce(Vector2 force)
@@ -110,7 +114,7 @@ public class Human : MonoBehaviour
         this._animationComponent.ChangeHumanState(HumanState.Idle);
 
         //  TODO: Reset physic
-        this._physicComponent.ResetVelocity();
+        this._physicComponent.Reset();
         this._physicComponent.EnablePhysic(true);
 
 

@@ -18,10 +18,11 @@ public class PhysicComponentBase : MonoBehaviour
         _rb2D.bodyType = (enable) ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
     }
 
-    public void ResetVelocity()
+    public void Reset()
     {
         if (_rb2D.bodyType == RigidbodyType2D.Static) return;
         this._rb2D.velocity = Vector2.zero;
+        this._rb2D.drag = 0f;
     }
 
     public Vector2 GetCurrentVelocity() => _rb2D.velocity;

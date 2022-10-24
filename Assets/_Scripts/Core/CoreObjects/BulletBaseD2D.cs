@@ -29,7 +29,7 @@ public class BulletBaseD2D : MonoBehaviour
         _renderer.enabled = enable;
         hasExploded = !enable;
         _fxComponent.KillFX();
-        _physicComponent.ResetVelocity();
+        _physicComponent.Reset();
     }
 
     public void Explode(Vector2 position)
@@ -50,18 +50,11 @@ public class BulletBaseD2D : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("DestructibleObjects")
-            || ((collision.transform.parent) && collision.transform.parent.gameObject.tag.Equals("DestructibleObjects"))
-        )
-        {
-            Debug.Log($"{this.name} collide with {collision.gameObject.name}");
-            HandleCollideWithGround(collision);
-        }
+        HandleCollideWithGround(collision);
 
-        if (collision.gameObject.tag.Equals("Human"))
-        {
-            HandleCollideWithHuman(collision);
-        }
+        HandleCollideWithHuman(collision);
+
+        HandleCollideWithBomb(collision);
     }
 
     public void Init()
@@ -90,16 +83,30 @@ public class BulletBaseD2D : MonoBehaviour
         if (!hasExploded) Explode(this.transform.position);
     }
 
-    private void HandleCollideWithHuman(Collision2D collision)
+    protected virtual void HandleCollideWithHuman(Collision2D collision)
     {
+        if (!collision.gameObject.tag.Equals(GameObjectTag.Human)) return;
+
         Explode(collision.GetContact(0).point);
         Human enemy = collision.gameObject.GetComponent<Human>();
         enemy?.GetBulletAffect(this.transform.position, this.explosion.StampSize.x, this.explosion.ForcePerRay);
         enemy?.Death();
     }
 
-    private void HandleCollideWithGround(Collision2D collision)
+    protected virtual void HandleCollideWithGround(Collision2D collision)
     {
+        if (collision.gameObject.tag.Equals(GameObjectTag.DestructibleObjects)
+            || ((collision.transform.parent) && collision.transform.parent.gameObject.tag.Equals(GameObjectTag.DestructibleObjects))
+        )
+        {
+            Explode(collision.GetContact(0).point);
+        }
+    }
+
+    protected virtual void HandleCollideWithBomb(Collision2D collision)
+    {
+        if (!collision.gameObject.tag.Equals(GameObjectTag.Bomb)) return;
+
         Explode(collision.GetContact(0).point);
     }
 }

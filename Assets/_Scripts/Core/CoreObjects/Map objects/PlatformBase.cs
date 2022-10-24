@@ -3,32 +3,15 @@ using System.Collections.Generic;
 using Destructible2D;
 using UnityEngine;
 
-public class PlatformBase : MonoBehaviour
+public class PlatformBase : ObjectBase
 {
     [SerializeField] protected Vector2 size = Vector2.one;
     [SerializeField] protected SpriteRenderer _spriteRenderer;
     protected Vector3 cachedSizeVec3;
     [SerializeField] protected Rigidbody2D _rb2D;
-    public bool isActive { get; protected set; }
     protected Vector3 _startPos;
     protected Vector3 _startRot;
     protected int _instanceIDInit;
-
-    private void OnEnable()
-    {
-        EventDispatcher.Instance.RegisterListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
-    }
-
-    private void OnDisable()
-    {
-        EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
-    }
-
-    protected virtual void HandleEventResetDataLevel(object param = null)
-    {
-        Reset();
-        this.Enable(false);
-    }
 
     protected virtual void OnValidate()
     {
@@ -49,9 +32,9 @@ public class PlatformBase : MonoBehaviour
 
     public Vector2 GetSizeSquare() => size;
 
-    public virtual void Enable(bool enable)
+    public override void Enable(bool enable)
     {
-        this.isActive = enable;
+        base.Enable(enable);
         _spriteRenderer.enabled = enable;
     }
 
@@ -60,7 +43,7 @@ public class PlatformBase : MonoBehaviour
 
     public virtual void Init(Vector3 centerPos, Vector3 groundCenterPos)
     {
-        this.tag = "DestructibleObjects";
+        this.tag = GameObjectTag.DestructibleObjects;
         cachedSizeVec3.Set(centerPos.x + groundCenterPos.x, centerPos.y + groundCenterPos.y, centerPos.z + groundCenterPos.z);
         // this.transform.localPosition = cachedSizeVec3;
         this.SetPosition(centerPos);
@@ -70,7 +53,7 @@ public class PlatformBase : MonoBehaviour
         this._instanceIDInit = GetInstanceID();
     }
 
-    public virtual void Reset()
+    public override void Reset()
     {
         this.transform.localPosition = _startPos;
         this.transform.localEulerAngles = _startRot;

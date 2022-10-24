@@ -7,6 +7,7 @@ public class BulletFXComponent : FXComponentBase
 {
     [SerializeField] private SpriteRenderer _spriteBg;
     [SerializeField] private SpriteRenderer _spriteInner;
+    [SerializeField] private Transform _spriteParent;
     private Color _startColorBg;
     private Color _startColorInner;
     [SerializeField] private ParticleSystem _fxStar;
@@ -21,6 +22,7 @@ public class BulletFXComponent : FXComponentBase
     private void Start()
     {
         HideFXSprite();
+        if (_spriteParent) _spriteParent.localScale = Vector3.one;
     }
 
     public void PlayExplodeFX()

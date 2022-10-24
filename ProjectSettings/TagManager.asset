@@ -8,6 +8,7 @@ TagManager:
   - Human
   - FX
   - Stone
+  - Bomb
   layers:
   - Default
   - TransparentFX
