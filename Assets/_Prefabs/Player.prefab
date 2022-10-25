@@ -368,7 +368,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.11994466, y: 0.259574}
+  m_ConnectedAnchor: {x: 0.11994514, y: 0.25957397}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -479,7 +479,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.031670913, y: -0.028779762}
-  m_ConnectedAnchor: {x: -0.39148006, y: -0.45188096}
+  m_ConnectedAnchor: {x: -0.3914801, y: -0.45188013}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -610,6 +610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450651605410631}
+  - component: {fileID: 3619824377516476029}
   m_Layer: 0
   m_Name: Idle
   m_TagString: Untagged
@@ -635,6 +636,25 @@ Transform:
   m_Father: {fileID: 6491392894172171866}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3619824377516476029
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147935443453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2426b9e755ab5bf48a5940a194b490da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1030502836124478429
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +899,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.0004504821, y: -0.022082966}
-  m_ConnectedAnchor: {x: -0.2014994, y: -0.6288586}
+  m_ConnectedAnchor: {x: -0.2015003, y: -0.62885827}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1246,7 +1266,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.15131779, y: 0.020880027}
+  m_ConnectedAnchor: {x: 0.15131696, y: 0.020880612}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1733,7 +1753,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.34019515, y: 0.11602776}
+  m_ConnectedAnchor: {x: -0.34019533, y: 0.1160278}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2310,7 +2330,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.06025912, y: 0.036643762}
-  m_ConnectedAnchor: {x: 0.02372486, y: 0.3911471}
+  m_ConnectedAnchor: {x: 0.023724897, y: 0.39114642}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2827,7 +2847,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.10716977, y: 0.10800618}
+  m_ConnectedAnchor: {x: -0.107169785, y: 0.10800613}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2938,7 +2958,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.34787112, y: 0.044855118}
+  m_ConnectedAnchor: {x: 0.34787136, y: 0.044855572}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2960,11 +2980,10 @@ GameObject:
   - component: {fileID: 6491392893925674684}
   - component: {fileID: 6491392893925674679}
   - component: {fileID: 6491392893925674680}
-  - component: {fileID: 6491392893925674681}
   - component: {fileID: 6491392893925674682}
   - component: {fileID: 1623248153}
-  - component: {fileID: 1623248152}
   - component: {fileID: 905652379}
+  - component: {fileID: 6768538761380295287}
   m_Layer: 0
   m_Name: Player
   m_TagString: Human
@@ -3064,22 +3083,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <_collider2D>k__BackingField: {fileID: 6491392893925674683}
   <_rb2D>k__BackingField: {fileID: 6491392893925674684}
---- !u!114 &6491392893925674681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491392893925674686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c9494df2f8e754459b3dd72f4343fe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 1623248152}
-  normalRenderObject: {fileID: 919132147935443453}
-  animAndRagdollRenderObject: {fileID: 9198527908698700427}
-  _ragDollComponent: {fileID: 1623248153}
 --- !u!114 &6491392893925674682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3093,7 +3096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _physicComponent: {fileID: 6491392893925674680}
-  _animationComponent: {fileID: 6491392893925674681}
+  _animationComponent: {fileID: 6768538761380295287}
   forceCanSuffer: 0.6
   _fx_blood: {fileID: 1180527153}
   _aimSystem: {fileID: 6491392893925674679}
@@ -3103,7 +3106,7 @@ MonoBehaviour:
   neckTransform: {fileID: 6515712192335091902}
   _bulletManager: {fileID: 0}
   fireForce: 15
-  maxBullet: 3
+  maxBullet: 30
 --- !u!114 &1623248153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3127,25 +3130,6 @@ MonoBehaviour:
   - {fileID: 2792012967593184763}
   - {fileID: 6607351969528022282}
   mainBodyRb2D: {fileID: 2585067353484938552}
---- !u!95 &1623248152
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491392893925674686}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2426b9e755ab5bf48a5940a194b490da, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!120 &905652379
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3165,7 +3149,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: fa9f2a404c3e1c643ad92b9c34b013c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3242,6 +3226,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &6768538761380295287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491392893925674686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ffba1778fab504fb44a27f55f465f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 3619824377516476029}
+  normalRenderObject: {fileID: 919132147935443453}
+  animAndRagdollRenderObject: {fileID: 9198527908698700427}
+  _ragDollComponent: {fileID: 1623248153}
 --- !u!1 &6491392894172171870
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,7 +3855,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.010536052, y: -0.039150126}
-  m_ConnectedAnchor: {x: -0.013786763, y: -0.56440735}
+  m_ConnectedAnchor: {x: -0.0137869865, y: -0.56440634}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

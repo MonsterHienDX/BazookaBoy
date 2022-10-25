@@ -73,7 +73,6 @@ public class EnemyManager : MonoBehaviour
     {
         Enemy enemy = (Enemy)param;
         if (!enemy || enemy.isDie) return;
-        enemy.ChangeDieMaterial(dieMaterial);
         enemyAmount--;
         if (enemyAmount <= 0) _ = GameManager.instance.WinLevel();
     }

@@ -9,6 +9,7 @@ TagManager:
   - FX
   - Stone
   - Bomb
+  - Bullet
   layers:
   - Default
   - TransparentFX

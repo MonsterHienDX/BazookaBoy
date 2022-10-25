@@ -81,8 +81,8 @@ namespace Destructible2D.Examples
 
             foreach (Collider2D collider2D in collider2Ds)
             {
-                cachedRb2D = collider2D.GetComponent<Rigidbody2D>();
-                if (cachedRb2D)
+                cachedRb2D = collider2D.attachedRigidbody;
+                if (cachedRb2D && !collider2D.isTrigger)
                 {
                     cachedForceDir = (cachedRb2D.transform.position - this.transform.position).normalized;
                     cachedForceMagnitude = CalculateForceRateByDistanceToCenter(this.transform.position, cachedRb2D.transform.position, RaycastRadius);

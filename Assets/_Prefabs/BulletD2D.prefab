@@ -4984,7 +4984,7 @@ GameObject:
   - component: {fileID: 6164423805830946355}
   m_Layer: 0
   m_Name: BulletD2D
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5066,7 +5066,7 @@ MonoBehaviour:
   Raycast: 1
   RaycastRadius: 1.5
   RaycastCount: 25
-  ForcePerRay: 1.5
+  ForcePerRay: 2
   DamagePerRay: 1
 --- !u!114 &4382138673483868257
 MonoBehaviour:
@@ -5112,6 +5112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteBg: {fileID: 6107907101095196983}
   _spriteInner: {fileID: 5932870579770232788}
+  _spriteParent: {fileID: 0}
   _fxStar: {fileID: 1207731670764291293}
 --- !u!1 &5311699072268077752
 GameObject:

@@ -55,4 +55,5 @@ public struct GameObjectTag
     public const string DestructibleObjects = "DestructibleObjects";
     public const string Bomb = "Bomb";
     public const string Human = "Human";
+    public const string Bullet = "Bullet";
 }

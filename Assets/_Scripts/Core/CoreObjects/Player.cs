@@ -137,6 +137,7 @@ public class Player : Human
         base.Death();
         this._aimSystem.HideTrajectoryLine();
         _ = GameManager.instance.LoseLevel();
+        this.PostEvent(EventID.PlayerDie);
     }
 
     public void RefillBullet() => cachedMaxBullet = maxBullet;

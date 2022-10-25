@@ -13,5 +13,6 @@ public enum EventID
     PlayerShot,
     PlayerReloadBullet,
     LoadLevel,
-    EndLevel
+    EndLevel,
+    PlayerDie
 }

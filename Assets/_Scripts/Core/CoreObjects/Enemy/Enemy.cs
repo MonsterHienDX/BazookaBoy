@@ -5,26 +5,25 @@ using UnityEngine;
 [RequireComponent(typeof(HumanPhysicComponent))]
 public class Enemy : Human
 {
-    [SerializeField] private MeshRenderer _meshRenderer;
     public EnemyType type { get; protected set; }
 
     private void OnEnable()
     {
-        EventDispatcher.Instance.RegisterListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+        this.RegisterListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+        this.RegisterListener(EventID.EndLevel, HandleEventEndLevel);
     }
 
     private void OnDisable()
     {
-        EventDispatcher.Instance.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+        this.RemoveListener(EventID.ResetDataLevel, HandleEventResetDataLevel);
+        this.RemoveListener(EventID.EndLevel, HandleEventEndLevel);
     }
 
     public override void Death()
     {
-        EventDispatcher.Instance.PostEvent(EventID.EnemyDie, this);
+        this.PostEvent(EventID.EnemyDie, this);
         base.Death();
     }
-
-    public void ChangeDieMaterial(Material material) => this._meshRenderer.material = material;
 
     public void Init(EnemyType type)
     {
@@ -35,7 +34,6 @@ public class Enemy : Human
     {
         base.Enable(enable);
         _physicComponent.EnablePhysic(enable);
-        _meshRenderer.gameObject.SetActive(enable);
     }
 
     public override void Reset()
@@ -46,6 +44,12 @@ public class Enemy : Human
     private void HandleEventResetDataLevel(object param = null)
     {
         this.Enable(false);
+    }
+
+    private void HandleEventEndLevel(object param = null)
+    {
+        if (isDie) return;
+        this._animationComponent.PlayAnimEndLevel();
     }
 
 }
